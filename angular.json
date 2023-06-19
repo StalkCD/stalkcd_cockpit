@@ -14,7 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "lodash"
+              "rfdc"
             ],
             "outputPath": "dist/stalk-cd-client",
             "index": "src/index.html",
