@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "stalkCD_client": {
+    "stalkCD_cockpit": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -16,7 +16,7 @@
             "allowedCommonJsDependencies": [
               "rfdc"
             ],
-            "outputPath": "dist/stalk-cd-client",
+            "outputPath": "dist/stalk-cd-cockpit",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "stalkCD_client:build:production"
+              "browserTarget": "stalkCD_cockpit:build:production"
             },
             "development": {
-              "browserTarget": "stalkCD_client:build:development"
+              "browserTarget": "stalkCD_cockpit:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "stalkCD_client:build"
+            "browserTarget": "stalkCD_cockpit:build"
           }
         },
         "test": {

@@ -1,5 +1,5 @@
 {
-  "name": "stalk-cd-client",
+  "name": "stalk-cd-cockpit",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
