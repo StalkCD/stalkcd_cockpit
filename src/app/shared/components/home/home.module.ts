@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { KpiListComponent } from './components/kpi-list/kpi-list.component';
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent, 
-    KpiListComponent],
+    HomeComponent,
+    ],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -18,7 +17,6 @@ import { KpiListComponent } from './components/kpi-list/kpi-list.component';
   ],
   exports: [
     HomeComponent,
-    KpiListComponent
   ]
 })
 export class HomeModule { }

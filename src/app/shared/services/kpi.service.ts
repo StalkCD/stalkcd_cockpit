@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Kpis } from 'src/app/shared/models/kpis';
+import { KpisConfig } from '../models/kpisConfig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class KpiService {
-  private uRL = 'http://localhost:6060/kpis/';
+  private uRL = 'http://localhost:8001/kpis/';
 
   constructor(private http: HttpClient) { }
 
-  getKpis(repoName: string, workflowName: string){
-    return this.http.get<Kpis>(this.uRL + repoName + '/' + workflowName);
+  getKpis(kpisConfig: KpisConfig){
+    return this.http.post<Kpis>(this.uRL, kpisConfig);
   }
 }
