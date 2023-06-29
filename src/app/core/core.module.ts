@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ServerErrorInterceptor } from './interceptors/server-error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers:[
     {provide: ErrorHandler, useClass: GlobalErrorHandler},
-    {provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ]
 })
 export class CoreModule { }

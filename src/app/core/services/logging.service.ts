@@ -7,6 +7,6 @@ export class LoggingService {
 
   logError(message: string) {
     // Send errors to server
-    console.log('LoggingService:' + message);
+    console.log('LoggingService: ' + message);
   }
 }

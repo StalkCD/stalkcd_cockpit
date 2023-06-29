@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { BusyService } from 'src/app/shared/services/busy.service';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +8,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class HomeComponent implements OnInit{
 
-  constructor(private spinnerServicer: NgxSpinnerService) { }
-
-  ngOnInit(): void {
-    this.spinnerServicer.show();
+  constructor(private busyServie: BusyService) {
+  }
+  ngOnInit() {
+    this.busyServie.busy();
     setTimeout(() => {
-      this.spinnerServicer.hide();
+      this.busyServie.idle();
     }, 5000);
   }
   
-  saleData = [
-    { name: "Mobiles", value: 105000 },
-    { name: "Laptop", value: 55000 },
-    { name: "AC", value: 15000 },
-    { name: "Headset", value: 150000 },
-    { name: "Fridge", value: 20000 }
-  ];
 }
