@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DownloadConfig } from 'src/app/shared/models/downloadConfig';
+import { BusyService } from './busy.service';
+import { ApiResponse } from '../models/apiResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +10,17 @@ import { DownloadConfig } from 'src/app/shared/models/downloadConfig';
 export class DownloadService {
   private uRL = 'http://localhost:8001/download/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private busyService: BusyService) { }
+
+  // TODO: nochmal überarbeiten, da der spinner auch abgebrochen werdne muss, wenn es keine reponse gibt +  was macht der Interceptor ??
 
   downloadHistoryData(downloadConfig: DownloadConfig){
-    return this.http.post<string>(this.uRL, downloadConfig);
+    this.busyService.busy();
+    return this.http.post<ApiResponse>(this.uRL, downloadConfig).subscribe(
+      (data) => {
+        console.log(data);
+        this.busyService.idle();
+      }
+    );
   }
 }

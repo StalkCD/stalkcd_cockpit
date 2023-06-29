@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DownloadConfig } from 'src/app/shared/models/downloadConfig';
+import { DownloadService } from 'src/app/shared/services/download.service';
 
 @Component({
   selector: 'app-convert',
@@ -6,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./convert.component.css']
 })
 export class ConvertComponent {
+  config: DownloadConfig = {
+    repoName: 'hibernate-orm',
+    repoOwner: 'hibernate',
+    workflowName: 'CodeQL',
+    gitHubToken: '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',
+    saveTo: 'local'
+  };
+
+  constructor(private downloadService: DownloadService){}
+
+  downloadRepo(){
+    this.downloadService.downloadHistoryData(this.config);
+  }
 
 }
