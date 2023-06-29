@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConvertComponent } from './convert.component';
 import { ConvertRoutingModule } from './convert-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -9,7 +10,8 @@ import { ConvertRoutingModule } from './convert-routing.module';
   declarations: [ConvertComponent],
   imports: [
     CommonModule,
-    ConvertRoutingModule
+    ConvertRoutingModule,
+    SharedModule
   ],
   exports: [ConvertComponent
   ]
