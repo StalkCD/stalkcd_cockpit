@@ -12,7 +12,7 @@ export class ConvertComponent {
     repoName: 'hibernate-orm',
     repoOwner: 'hibernate',
     workflowName: 'CodeQL',
-    gitHubToken: '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',
+    gitHubToken: 'TOken',
     saveTo: 'local'
   };
 

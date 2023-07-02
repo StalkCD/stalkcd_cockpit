@@ -1,0 +1,23 @@
+version: "2.19"
+services:
+  cockpit:
+    image: stalkcd_cockpit
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - "8080:80"
+  extended:
+    image: stalkcd_extended
+    build:
+      context: ../stalkcd_extended
+      dockerfile: Dockerfile.dev
+    ports:
+    - "8081:8081"
+  characteristics:
+    image: stalkcd_characteristics
+    build:
+      context: ../stalkcd_characteristics
+      dockerfile: Dockerfile.dev
+    ports:
+    - "8082:8082"

@@ -7,7 +7,7 @@ import { KpisConfig } from '../models/kpisConfig';
   providedIn: 'root'
 })
 export class KpiService {
-  private uRL = 'http://localhost:8001/kpis/';
+  private uRL = 'http://localhost:8082/kpis/';
 
   constructor(private http: HttpClient) { }
 
