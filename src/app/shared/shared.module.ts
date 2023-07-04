@@ -1,9 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { DownloadModalComponent } from './modals/download-modal/download-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -17,14 +17,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         type: 'square-loader',
       }
     ),
-    ModalModule.forRoot(),
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [  
     NgxSpinnerModule,
-    ModalModule,
     FormsModule,
     ReactiveFormsModule
   ]

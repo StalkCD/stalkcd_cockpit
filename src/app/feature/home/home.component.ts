@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { MatDialog } from '@angular/material/dialog';
 import { DownloadModalComponent } from 'src/app/shared/modals/download-modal/download-modal.component';
 
 @Component({
@@ -8,11 +8,10 @@ import { DownloadModalComponent } from 'src/app/shared/modals/download-modal/dow
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  bsModalRef: BsModalRef<DownloadModalComponent> = new BsModalRef<DownloadModalComponent>();
 
-  constructor(private modalService: BsModalService) {}
+  constructor(public dialog: MatDialog) {}
 
   openDownloadModal() {
-    this.bsModalRef = this.modalService.show(DownloadModalComponent);
+    this.dialog.open(DownloadModalComponent);
   }
 }

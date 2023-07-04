@@ -1,5 +1,4 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 import { DownloadService } from '../../services/download.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DownloadConfig } from '../../models/downloadConfig';
@@ -14,7 +13,7 @@ export class DownloadModalComponent implements OnInit{
   config!: DownloadConfig;
   isDone = false;
 
-  constructor(public bsModalRef: BsModalRef, private formBuilder: FormBuilder, private downloadService: DownloadService) { }
+  constructor(private formBuilder: FormBuilder, private downloadService: DownloadService) { }
 
   ngOnInit(){
     this.initializeForm();
