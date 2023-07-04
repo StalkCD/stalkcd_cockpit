@@ -1,0 +1,49 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Download</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ngx-spinner size ="medium" [fullScreen] = "false"><p class="loading">Loading...</p></ngx-spinner>
+
+    <div *ngIf="!isDone">
+        <form [formGroup]="downloadForm" id="downloadForm" (ngSubmit)="downloadForm.valid && downloadRepository()">
+            <div class="flex-row text-align-center">
+                <label for="repoName">Repository Name</label>
+                <input type="text" id="repoName" class="form-control" formControlName="repoName">
+    
+                <label for="repoOwner">Repository Owner</label>
+                <input type="text" name="repoOwner" class="form-control" formControlName="repoOwner">
+    
+                <label for="workflowName">Workflow Name</label>
+                <input type="text" name="workflowName" class="form-control" formControlName="workflowName">
+    
+                <label for="gitHubToken">Your GitHub Token</label>
+                <input type="text" name="gitHubToken" class="form-control" formControlName="gitHubToken">    
+    
+                <label for="saveTo">Where to save?</label>
+                <select class="form-select" name="saveTo" formControlName="saveTo">
+                    <option value="local">Local</option>
+                    <option value="db">Database</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="isDone" style="text-align: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#8cc63e" class="bi bi-check-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+        <h5>Download Complete.</h5>
+    </div>
+</div>
+<div class="modal-footer">
+    <div *ngIf="!isDone">
+        <button type="submit" [disabled]="!downloadForm.valid" form="downloadForm" class="btn btn-info me-2">Download</button>
+        <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Cancel</button>
+    </div>
+    <div *ngIf="isDone">
+        <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">Close</button>
+    </div>
+</div>

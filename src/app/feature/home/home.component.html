@@ -1,5 +1,5 @@
-Hello World
-
-
-
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-loader" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<app-kpi-card 
+    [title]="'Average Duration'"
+    [duration]="123456">
+</app-kpi-card>
+<button (click)="openDownloadModal()" class="btn btn-info">Download</button>

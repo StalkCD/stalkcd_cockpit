@@ -1,33 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { KpisConfig } from 'src/app/shared/models/kpisConfig';
-import { BusyService } from 'src/app/shared/services/busy.service';
-import { KpiService } from 'src/app/shared/services/kpi.service';
+import { Component } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { DownloadModalComponent } from 'src/app/shared/modals/download-modal/download-modal.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
-  config: KpisConfig = {
-    repoName: 'hibernate-orm',
-    workflowName: 'CodeQL',
-    loadFrom: 'local'
-  };
+export class HomeComponent {
+  bsModalRef: BsModalRef<DownloadModalComponent> = new BsModalRef<DownloadModalComponent>();
 
-  constructor(private busyServie: BusyService, private kpiService: KpiService) {
-  }
-  ngOnInit() {
-    // this.busyServie.busy();
-    // setTimeout(() => {
-    //   this.busyServie.idle();
-    // }, 5000);
-     this.getKpis(this.config);
+  constructor(private modalService: BsModalService) {}
 
-  }
-  getKpis(config: KpisConfig){
-    this.kpiService.getKpis(config).subscribe((data) => {
-      console.log(data);
-    });
+  openDownloadModal() {
+    this.bsModalRef = this.modalService.show(DownloadModalComponent);
   }
 }
