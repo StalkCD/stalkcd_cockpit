@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NgChartsModule } from 'ng2-charts';
 import { CountUpModule } from 'ngx-countup';
 import { KpiCardComponent } from './components/kpis/kpi-card/kpi-card.component';
+import { BuildresultsChartComponent } from './components/charts/buildresults-chart/buildresults-chart.component';
 
 
 
@@ -13,6 +14,7 @@ import { KpiCardComponent } from './components/kpis/kpi-card/kpi-card.component'
   declarations: [
     HomeComponent,
     KpiCardComponent,
+    BuildresultsChartComponent,
     ],
   imports: [
     CommonModule,
