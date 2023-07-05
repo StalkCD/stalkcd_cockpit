@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DownloadService } from '../../services/download.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DownloadConfig } from '../../models/downloadConfig';

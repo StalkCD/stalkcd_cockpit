@@ -1,8 +1,12 @@
-<div class="card">
-    <div class="card-header">
-        {{title}}
-    </div>
-    <div class="card-body">
-        <span>{{duration}} ms</span>
-    </div>
-</div>
+<mat-card class="dashboard-card">
+    <mat-card-header class="dashboard-card__header">
+        <mat-card-title>
+            <h3 class="kpi-title">{{title}}</h3>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content kpi-result">
+        <span>10</span>
+        <span>{{duration}}</span>
+        <span>ms</span>
+    </mat-card-content>
+</mat-card>
