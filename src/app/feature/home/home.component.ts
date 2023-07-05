@@ -16,15 +16,18 @@ export class HomeComponent implements OnInit{
     workflowName: 'CodeQL',
     loadFrom: 'local'
   }
-  characteristics!: Characteristics;
+  characteristics = new Characteristics(0, [], []);
 
   constructor(public dialog: MatDialog, private characteristicsService: CharacteristicsService) {}
 
   ngOnInit(): void {
     this.characteristicsService.getCharacteristics(this.charConfig).subscribe((data) => {
-      console.log(data);
+      
+      // this.characteristics.avgBuildDuration = data.avgBuildDuration;
+      // this.characteristics.arrivalRate = data.arrivalRate;
+      // this.characteristics.buildResults = data.buildResults;
+
       this.characteristics = data;
-      console.log(this.characteristics);
     });
   }
 

@@ -1,40 +1,38 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ChartData, ChartEvent, ChartType  } from 'chart.js';
+import { BuildResult } from 'src/app/shared/models/buildResult';
+
 
 @Component({
   selector: 'app-buildresults-chart',
   templateUrl: './buildresults-chart.component.html',
   styleUrls: ['./buildresults-chart.component.css']
 })
-export class BuildresultsChartComponent{
-  @Input() data!: Object[];
-
-  public barChartOptions = {
-    legend:{
-      display: false
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-    cutoutPercentage: 80,
-    layout: { padding: 0 },
-    tooltips: {
-      enabled: true,
-      mode: "index",
-      intersect: false,
-      borderWidth: 1,
-      borderColor: "#eeeeee",
-      backgroundColor: "#ffffff",
-      titleFontColor: "#43436B",
-      bodyFontColor: "#A1A1B5",
-      footerFontColor: "#A1A1B5"
-    }
+export class BuildresultsChartComponent implements OnInit{
+  @Input() data!: BuildResult[];
+  // Doughnut
+  public doughnutChartLabels: string[] = [ 'Download Sales', 'In-Store Sales', 'Mail-Order Sales' ];
+  public doughnutChartData: ChartData<'doughnut'> = {
+    labels: this.doughnutChartLabels,
+    datasets: [
+      { data: [ 350, 450, 100 ] },
+      { data: [ 50, 150, 120 ] },
+      { data: [ 250, 130, 70 ] }
+    ]
   };
+  public doughnutChartType: ChartType = 'doughnut';
 
-  public barChartLabels = [];
-  public barChartType = "doughnut";
-  public barChartLegend = true;
-  public barChartData = [];
-  public value = 0;
-  public labels = [];
+  // events
+  public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
 
+  public chartHovered({ event, active }: { event: ChartEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
   constructor() { }
+
+  ngOnInit() {
+    console.log(this.data);
+  }
 }

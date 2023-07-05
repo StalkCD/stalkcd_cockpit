@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { NgChartsModule } from 'ng2-charts';
 import { CountUpModule } from 'ngx-countup';
 import { KpiCardComponent } from './components/kpis/kpi-card/kpi-card.component';
 import { BuildresultsChartComponent } from './components/charts/buildresults-chart/buildresults-chart.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -20,8 +20,8 @@ import { BuildresultsChartComponent } from './components/charts/buildresults-cha
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    NgChartsModule,
-    CountUpModule
+    CountUpModule,
+    NgChartsModule
   ],
   exports: [
     HomeComponent,
