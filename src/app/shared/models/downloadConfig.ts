@@ -3,5 +3,5 @@ export interface DownloadConfig {
     repoOwner: string;
     workflowName: string;
     gitHubToken: string;
-    saveTo?: string;
+    saveTo: string;
 }

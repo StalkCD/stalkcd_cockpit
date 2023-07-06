@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChartData, ChartEvent, ChartType  } from 'chart.js';
+import { ChartData, ChartType  } from 'chart.js';
 import { BuildResult } from 'src/app/shared/models/buildResult';
 
 
@@ -9,30 +9,38 @@ import { BuildResult } from 'src/app/shared/models/buildResult';
   styleUrls: ['./buildresults-chart.component.css']
 })
 export class BuildresultsChartComponent implements OnInit{
-  @Input() data!: BuildResult[];
-  // Doughnut
-  public doughnutChartLabels: string[] = [ 'Download Sales', 'In-Store Sales', 'Mail-Order Sales' ];
-  public doughnutChartData: ChartData<'doughnut'> = {
-    labels: this.doughnutChartLabels,
+  @Input() buildResults!: BuildResult[];
+  
+  public chartLabels: string[] = [];
+  public chartData: ChartData<'doughnut'> = {
     datasets: [
-      { data: [ 350, 450, 100 ] },
-      { data: [ 50, 150, 120 ] },
-      { data: [ 250, 130, 70 ] }
-    ]
+      { data: [] }
+      ]
   };
-  public doughnutChartType: ChartType = 'doughnut';
+  public chartType: ChartType = 'doughnut';
+  public chartOptions = {
+    legend: {
+      display: false
+    },
+    responsive: true,
+    cutout: '70%',
+  };
+  public chartLegend = true;
+  public value = 0;
 
-  // events
-  public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: ChartEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.data);
+  ngOnInit(): void {
+    this.createChart();
+  }
+
+  createChart() {
+     this.chartLabels = this.buildResults.map(x => x.result);
+     this.chartData = {
+      datasets: [
+        { data: this.buildResults.map(x => x.count) }
+      ]
+     };
+     this.value = this.buildResults.reduce((sum, current) => sum + current.count, 0);
   }
 }

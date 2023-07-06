@@ -1,43 +1,64 @@
 <button (click)="openDownloadModal()" class="btn btn-info">Download</button>
 
 <div class="grid-container">
-    <div class="kpi-wrap">
-        <mat-grid-list cols="4" rowHeight="131px">
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <app-kpi-card class="kpi-card"
-                        [title]="'Average Duration'"
-                        [duration]="characteristics.avgBuildDuration"
-                ></app-kpi-card>
-            </mat-grid-tile>
-        </mat-grid-list>
-    </div>   
-    <div>
-        <mat-grid-list cols="5" rowHeight="510px">
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-                <!-- <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows"> -->
-              <mat-card class="dashboard-card">
-                <mat-card-header class="dashboard-card__header">
-                  <mat-card-title>
-                    <h3>Build Results</h3>
-                    <!-- <div *ngIf="card.hasDatePick">
-                      <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                        <mat-icon>more_vert</mat-icon>
-                      </button>
-                      <mat-menu #menu="matMenu" xPosition="before">
-                        <button mat-menu-item  (click)="changeDateRange('This year')">This year</button>
-                        <button mat-menu-item  (click)="changeDateRange('Last year')">Last year</button>
-                      </mat-menu>
-                   </div> -->
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                  <div>
-                    <!-- <app-bar-chart [query]="card.query" *ngIf="card.chart === 'bar'"></app-bar-chart> -->
-                    <app-buildresults-chart [data]="characteristics.buildResults"></app-buildresults-chart>
-                  </div>
-                </mat-card-content>
-              </mat-card>
-            </mat-grid-tile>
-          </mat-grid-list>
-      </div> 
+  <div class="kpi-wrap">
+    <mat-grid-list cols="4" rowHeight="120px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <app-kpi-card class="kpi-card"
+                  [title]="'Average Duration'"
+                  [duration]="characteristics.avgBuildDuration"
+          ></app-kpi-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <app-kpi-card class="kpi-card"
+                [title]="'Average Duration'"
+                [duration]="characteristics.avgBuildDuration"
+        ></app-kpi-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <app-kpi-card class="kpi-card"
+                [title]="'Average Duration'"
+                [duration]="characteristics.avgBuildDuration"
+        ></app-kpi-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <app-kpi-card class="kpi-card"
+                [title]="'Average Duration'"
+                [duration]="characteristics.avgBuildDuration"
+        ></app-kpi-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div>
+    <mat-grid-list cols="5" rowHeight="512px">
+      <mat-grid-tile [colspan]="3" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header class="dashboard-card__header">
+            <mat-card-title>
+              <h3>Arrival Rate</h3>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div>
+              <app-arrivalrate-chart [arrivalRate]="characteristics.arrivalRate"></app-arrivalrate-chart>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header class="dashboard-card__header">
+            <mat-card-title>
+              <h3>Build Results</h3>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>
+              <app-buildresults-chart [buildResults]="characteristics.buildResults"></app-buildresults-chart>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div> 
 </div>

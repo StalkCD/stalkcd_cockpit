@@ -1,4 +1,17 @@
-<canvas baseChart class="chart"
-        [data]="doughnutChartData"
-        [type]="doughnutChartType">
-</canvas>
+<div class="doughnut">
+  <canvas baseChart
+      [data]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="chartLegend"
+      [type]="chartType">
+  </canvas>    
+</div>
+<mat-grid-list cols="4">
+  <mat-grid-tile *ngFor="let card of buildResults" [colspan]="1" [rowspan]="1">
+    <div>
+      <h3 class="doughnut-label">{{card.result}}</h3>
+      <h2 class="doughnut-number">{{((card.count/value) * 100).toFixed(1)}}%</h2>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
