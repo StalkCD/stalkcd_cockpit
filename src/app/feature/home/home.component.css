@@ -5,7 +5,8 @@
 }
 
 .grid-container {
-  margin: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .dashboard-card {
   position: absolute;
