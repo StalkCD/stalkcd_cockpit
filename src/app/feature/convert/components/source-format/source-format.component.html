@@ -1,0 +1,44 @@
+<mat-card class="converter-card-content">
+	<form [formGroup]="frmStepOne">
+		<mat-card-title>Choose the format of the data source</mat-card-title>
+
+		<mat-grid-list cols="2" rowHeight="160px">
+			<mat-grid-tile [colspan]="1" [rowspan]="1">
+				<mat-card class="format-card">
+					<input type="radio" id="stalkcdSource" formControlName="sourceFormat" value="stalkcd">
+					<label for="stalkcdSource">
+						<h2>StalkCD</h2>
+					</label>
+				</mat-card>
+			</mat-grid-tile>
+			<mat-grid-tile [colspan]="1" [rowspan]="1">
+				<mat-card class="format-card">
+					<input type="radio" id="jenkinsSource" formControlName="sourceFormat" value="jenkins">
+					<label for="jenkinsSource">
+						<h2>Jenkins</h2>
+					</label>
+				</mat-card>
+			</mat-grid-tile>			
+			<!-- <mat-grid-tile [colspan]="1" [rowspan]="1">
+				<mat-card class="format-card">
+					<input type="radio" id="githubactionsSource" formControlName="sourceFormat" value="githubactions">
+					<label for="githubactionsSource">
+						<h2>GitHub Actions</h2>
+					</label>
+				</mat-card>
+			</mat-grid-tile> -->
+			<mat-grid-tile [colspan]="1" [rowspan]="1">
+				<mat-card class="format-card">
+					<input type="radio" id="bpmnSource" formControlName="sourceFormat" value="bpmn">
+					<label for="bpmnSource">
+						<h2>BPMN</h2>
+					</label>
+				</mat-card>
+			</mat-grid-tile>
+		</mat-grid-list>
+	
+  	    <mat-card-actions>
+			<button mat-button matStepperNext>Next</button>
+		</mat-card-actions>
+	</form>
+</mat-card>

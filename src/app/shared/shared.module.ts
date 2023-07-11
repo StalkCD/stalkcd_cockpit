@@ -9,6 +9,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from "@angular/material/button";
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -29,9 +35,23 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCardModule,
     MatIconModule,
     MatMenuModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { 
+        displayDefaultIndicatorType: false,
+        showError: true 
+      }
+    }
+  ],
   exports: [  
     NgxSpinnerModule,
     FormsModule,
@@ -41,7 +61,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCardModule,
     MatIconModule,
     MatMenuModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule
   ]
 })
 export class SharedModule { }
