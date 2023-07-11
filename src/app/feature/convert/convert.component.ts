@@ -38,11 +38,28 @@ export class ConvertComponent {
   convert(){
     var sourceFormat = this.frmStepOne.value["sourceFormat"]
     var targetFormat = this.frmStepTwo.value["targetFormat"]
+    var targetPath = this.getTargetPath(targetFormat);
+    
     var config: ConverterConfig = {
       source: this.frmStepThree.value["sourcePath"],
-      target: './res/_StalkCDYamls/test.yml'
+      target: targetPath
     }
 
     this.converterService.convertFile(config, sourceFormat, targetFormat);
+  }
+
+  private getTargetPath(targetFormat: string): string{
+    var path = "";
+    if(targetFormat == "stalkcd"){
+      path = "./res/_StalkCDYamls/test.yml";
+    }else if(targetFormat == "jenkins"){
+      path = "./res/_JenkinsFiles/test.Jenkinsfile";
+    }else if(targetFormat == "githubactions"){
+      path = "./res/_GitHubActionsFiles/test.yml";
+    }else if(targetFormat == "bpmn"){
+      path = "./res/_BPMNFiles/test.bpmn";
+    }
+
+    return path;
   }
 }
