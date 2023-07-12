@@ -20,22 +20,22 @@ services:
       context: ../stalkcd_characteristics
       dockerfile: Dockerfile.dev
     volumes:
-      - type: volume
-        source: data
-        target: /files
+      - data:/files
     ports:
     - "8082:8082"
+    environment:
+      - DATABASE_HOST=db
+    links:
+      - mongodb:db
   mongodb:
+    container_name: mongodb
     image: mongodb/mongodb-community-server
     environment:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=pass
-    volumes:
-      - type: volume
-        source: data
-        target: /db
+      - DATABASE_HOST=db
     ports:
-      - "8083:27017"
+      - "27017:27017"
 
 volumes:
   data:
