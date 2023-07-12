@@ -1,17 +1,16 @@
 <mat-card class="converter-card-content">
 	<form [formGroup]="frmStepThree">
-		<mat-card-title>Choose the target format</mat-card-title>
+		<mat-card-title class="title">Set Parameters</mat-card-title>
 
 		<mat-form-field>
-            <input matInput formControlName="sourcePath" placeholder="Path" required>
+            <input matInput formControlName="sourcePath" id="sourcePath" placeholder="Path" required>
         </mat-form-field>
+		<br>
+		<br>
 
-		
-		<p>TODO:</p>
-		<p>-Name of the file</p>
-		<p>- Nicht jede source quelle erlaubt den convert zum target format</p>
-		<p>     - Wenn nicht erlaubt, dann soll das target format nicht angezeigt werden</p>
-
+		<mat-form-field>
+            <input matInput formControlName="targetName" placeholder="File name" required>
+        </mat-form-field>
 
 		<mat-card-actions>
 			<button mat-button matStepperPrevious>Back</button>

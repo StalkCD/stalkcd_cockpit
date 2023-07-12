@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,10 +8,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SourceFormatComponent {
   frmStepOne: FormGroup;
+  @Output() source = new EventEmitter<string>();
 
   constructor(private fb: FormBuilder) {
     this.frmStepOne = this.fb.group({
       sourceFormat: ['', Validators.required],
     });
+  }
+
+  setSource(){
+    this.source.emit(this.frmStepOne.value["sourceFormat"]);
   }
 }

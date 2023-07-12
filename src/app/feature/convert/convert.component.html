@@ -1,14 +1,14 @@
 <div>
     <mat-grid-list cols="5" rowHeight="650">
         <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
-        <mat-grid-tile [colspan]="3" [rowspan]="1">
+        <mat-grid-tile *ngIf="!isDone" [colspan]="3" [rowspan]="1">
             <mat-card class="converter-card">
                 <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
                     <mat-step [stepControl]="frmStepOne">
-                        <app-source-format></app-source-format>
+                        <app-source-format (source)="getSource($event)"></app-source-format>
                     </mat-step>
                     <mat-step [stepControl]="frmStepTwo">
-                        <app-target-format></app-target-format>
+                        <app-target-format [sourceFormat]="source"></app-target-format>
                     </mat-step>
                     <mat-step [stepControl]="frmStepThree">
                         <app-convert-config></app-convert-config>
@@ -18,12 +18,18 @@
                         <h4>Source format: {{frmStepOne.value["sourceFormat"]}}</h4>
                         <h4>Target format: {{frmStepTwo.value["targetFormat"]}}</h4>
                         <h4>File path: {{frmStepThree.value["sourcePath"]}}</h4>
+                        <h4>File Name: {{frmStepThree.value["targetName"]}}</h4>
                         <div>
                             <button mat-button matStepperPrevious>Back</button>
                             <button mat-button (click)="convert()">Convert</button>
                         </div>
                     </mat-step>
                 </mat-horizontal-stepper>
+            </mat-card>
+        </mat-grid-tile> 
+        <mat-grid-tile *ngIf="isDone" [colspan]="3" [rowspan]="1">
+            <mat-card class="converter-card">
+                <mat-card-title>Converting was successfull.</mat-card-title>
             </mat-card>
         </mat-grid-tile> 
         <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>

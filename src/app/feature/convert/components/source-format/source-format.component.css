@@ -10,6 +10,10 @@
     box-shadow: none;
 }
 
+.title {
+    margin-bottom: 20px;
+}
+
 /* styling der card */
 input[type="radio"]{
     -webkit-appearance: none;

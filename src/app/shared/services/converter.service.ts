@@ -14,10 +14,7 @@ export class ConverterService {
   convertFile(converterConfig: ConverterConfig, sourceFormat: string, targetFormat: string) {
     var converterString = this.getURL(sourceFormat, targetFormat);
 
-
-    console.log(converterConfig);
-    console.log(converterString);
-    // return this.http.post<ApiResponse>(this.uRL + converterString, converterConfig);
+    return this.http.post<ApiResponse>(this.uRL + converterString, converterConfig);
   }
 
   private getURL(sourceFormat: string, targetFormat: string): string {

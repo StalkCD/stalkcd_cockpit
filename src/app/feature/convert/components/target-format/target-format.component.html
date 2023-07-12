@@ -1,8 +1,8 @@
 <mat-card class="converter-card-content">
 	<form [formGroup]="frmStepTwo">
-		<mat-card-title>Choose the target format</mat-card-title>
+		<mat-card-title class="title">Choose the target format</mat-card-title>
 		<mat-grid-list cols="2" rowHeight="160px">
-			<mat-grid-tile [colspan]="1" [rowspan]="1">
+			<mat-grid-tile *ngIf="sourceFormat == 'bpmn' || sourceFormat == 'jenkins'" [colspan]="1" [rowspan]="1">
 				<mat-card class="format-card">
 					<input type="radio" id="stalkcdTarget" formControlName="targetFormat" value="stalkcd">
 					<label for="stalkcdTarget">
@@ -10,7 +10,7 @@
 					</label>
 				</mat-card>
 			</mat-grid-tile>
-			<mat-grid-tile [colspan]="1" [rowspan]="1">
+			<mat-grid-tile *ngIf="sourceFormat == 'bpmn' || sourceFormat == 'stalkcd'" [colspan]="1" [rowspan]="1">
 				<mat-card class="format-card">
 					<input type="radio" id="jenkinsTarget" formControlName="targetFormat" value="jenkins">
 					<label for="jenkinsTarget">
@@ -18,7 +18,7 @@
 					</label>
 				</mat-card>
 			</mat-grid-tile>			
-			<mat-grid-tile [colspan]="1" [rowspan]="1">
+			<mat-grid-tile *ngIf="sourceFormat == 'jenkins'" [colspan]="1" [rowspan]="1">
 				<mat-card class="format-card">
 					<input type="radio" id="githubactionsTarget" formControlName="targetFormat" value="githubactions">
 					<label for="githubactionsTarget">
@@ -26,7 +26,7 @@
 					</label>
 				</mat-card>
 			</mat-grid-tile>
-			<mat-grid-tile [colspan]="1" [rowspan]="1">
+			<mat-grid-tile *ngIf="sourceFormat == 'stalkcd'" [colspan]="1" [rowspan]="1">
 				<mat-card class="format-card">
 					<input type="radio" id="bpmnTarget" formControlName="targetFormat" value="bpmn">
 					<label for="bpmnTarget">

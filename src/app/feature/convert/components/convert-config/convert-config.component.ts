@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,7 @@ export class ConvertConfigComponent{
   constructor(private fb: FormBuilder) {
     this.frmStepThree = this.fb.group({
       sourcePath: ['', Validators.required],
+      targetName: ['', Validators.required],
     });
   }
 }
