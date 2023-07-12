@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DownloadService } from '../../services/download.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DownloadConfig } from '../../models/downloadConfig';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-download-modal',
@@ -13,7 +14,7 @@ export class DownloadModalComponent implements OnInit{
   config!: DownloadConfig;
   isDone = false;
 
-  constructor(private formBuilder: FormBuilder, private downloadService: DownloadService) { }
+  constructor(private formBuilder: FormBuilder, private downloadService: DownloadService, private toastrService: ToastrService) { }
 
   ngOnInit(){
     this.initializeForm();
@@ -34,9 +35,10 @@ export class DownloadModalComponent implements OnInit{
     this.downloadService.downloadHistoryData(this.config).subscribe({
       next: () => {
         this.isDone = true;
+        this.toastrService.success("Repository downloaded successfully", "Success");
       },
       error: (err) => {
-        console.log(err);
+        this.toastrService.error(err.error.message, "Error");
       }
     });
   }

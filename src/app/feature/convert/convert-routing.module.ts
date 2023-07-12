@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { ConvertComponent } from "./convert.component";
 
 const routes: Routes = [
-  { path:'', component: ConvertComponent},
+  { path:'', component: ConvertComponent },
 ];
 
 @NgModule({
