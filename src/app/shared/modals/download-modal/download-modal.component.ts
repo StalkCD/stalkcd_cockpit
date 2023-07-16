@@ -27,11 +27,17 @@ export class DownloadModalComponent implements OnInit{
       workflowName: ['', Validators.required],
       gitHubToken: ['', Validators.required],
       saveTo: ['', Validators.required],
+      depth: ['', Validators.required],
+      pages: ['', Validators.required]
     });
   }
 
+  // TODO:
+  // - Wenn error dann darf kein haken angezeigt werden sodern eine Error Message
   downloadRepository(){
     this.config = {...this.downloadForm?.value};
+
+    console.log(this.config);
     this.downloadService.downloadHistoryData(this.config).subscribe({
       next: () => {
         this.isDone = true;

@@ -22,6 +22,18 @@
                   <option value="local">Local</option>
                   <option value="db">Database</option>
               </select>
+
+              <label for="depth">Depth</label>
+              <select class="form-select" name="depth" formControlName="depth">
+                  <option value="1">Workflow Description File</option>
+                  <option value="2">Runs</option>
+                  <option value="3">Jobs</option>
+                  <option value="4">Logs</option>
+              </select>
+
+              <label for="pages">Your GitHub Token</label>
+              <input type="number" name="pages" class="form-control" formControlName="pages">
+              <span><small>1 is equal to 100 runs.</small></span>
           </div>
       </form>
   </div>
