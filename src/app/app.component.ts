@@ -11,22 +11,20 @@ import { CharacteristicsConfig } from './shared/models/characteristicsConfig';
 export class AppComponent implements OnInit {
   title = 'stalkCD_client';
 
-  private charConfig: CharacteristicsConfig = {
-    repoName: 'hibernate-orm',
-    workflowName: 'CodeQL',
-    loadFrom: 'local'
-  }
-
   constructor(private characteristicsService: CharacteristicsService) { }
 
   ngOnInit(): void {
+    // localStorage.clear();
     this.setCurrentCharacteristics();
   }
 
+  // TODO:
+  // - aktuelle characteristics in localstorage speichern
+  // - wenn nichts zu laden ist, dann empty view zeigen
   setCurrentCharacteristics(){
     const charString = localStorage.getItem('characteristics');
     if(!charString) {
-      this.characteristicsService.getCharacteristics(this.charConfig).subscribe();
+      this.characteristicsService.getLatestCharacteristics().subscribe();
       return;
     }
     const characteristics: Characteristics = JSON.parse(charString);

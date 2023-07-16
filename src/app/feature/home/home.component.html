@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="grid-container" *ngIf="!!characteristics">
   <div class="kpi-wrap">
     <mat-grid-list cols="4" rowHeight="120px">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -60,3 +60,10 @@
     </mat-grid-list>
   </div> 
 </div>
+<div class="empty-state" *ngIf="!characteristics">
+  <img class="empty-img" src="../assets/img/empty-box.svg" />
+  <h1>It looks very empty here.</h1>
+  <h2>Please select a repository whose data should be displayed.</h2>
+  <button mat-flat-button color="primary" routerLink='/repositorylist' routerLinkActive='active'>Select Repository</button>
+</div>
+

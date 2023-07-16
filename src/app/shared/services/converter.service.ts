@@ -19,6 +19,7 @@ export class ConverterService {
     return this.http.post<ApiResponse>(this.convertURL + converterString, converterConfig);
   }
 
+  // TODO: tutorila umsetzen, wennd er Zugriff mit der DB funktioniert
   downloadFile(config: ConverterPath){
     // Siehe https://ramya-bala221190.medium.com/downloading-a-file-using-node-and-angular-b9eb32dd5ad5
     return this.http.post(this.downloadURL, config);

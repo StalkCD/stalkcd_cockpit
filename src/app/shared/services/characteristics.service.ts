@@ -26,6 +26,19 @@ export class CharacteristicsService {
     );
   }
 
+  // TODO: muss noch zum laufen gebracht werden
+  getLatestCharacteristics(){
+    return this.http.get<Characteristics>(this.uRL + 'latest').pipe(
+      map(characteristics => {
+        if (characteristics){
+          this.setCurrentCharacteristics(characteristics);
+        }else{
+          console.log('Error: No data received');
+        }
+      })
+    );
+  }
+
   setCurrentCharacteristics(characteristics: Characteristics){
     localStorage.setItem('characteristics', JSON.stringify(characteristics));
     this.currentCharacteristicsSource.next(characteristics);

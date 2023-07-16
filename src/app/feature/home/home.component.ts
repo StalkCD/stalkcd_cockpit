@@ -8,7 +8,6 @@ import { CharacteristicsService } from 'src/app/shared/services/characteristics.
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  
   characteristics!: Characteristics;
 
   constructor(private characteristicsService: CharacteristicsService) {

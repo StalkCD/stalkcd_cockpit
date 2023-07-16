@@ -31,3 +31,19 @@
 .dashboard-card-content {
   text-align: center;
 }
+
+.empty-state {
+  margin: 20px;
+  text-align: center;
+}
+
+.empty-img{
+  width: auto;
+  height: 300px;
+}
+
+h1{
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.5rem;
+}
