@@ -17,7 +17,8 @@ export class ConvertComponent {
   @ViewChild(TargetFormatComponent) targetFormatComponent: TargetFormatComponent;
   @ViewChild(ConvertConfigComponent) convertConfigComponent: ConvertConfigComponent;
   source: string;
-  isDone:boolean;
+  target: string;
+  isDone: boolean;
 
   get frmStepOne() {
     return this.sourceFormatComponent.frmStepOne;
@@ -34,10 +35,12 @@ export class ConvertComponent {
 
   constructor(private converterService: ConverterService, private toastrService: ToastrService) {
     this.source = '';
+    this.target = '';
     this.sourceFormatComponent = new SourceFormatComponent(new FormBuilder());
     this.targetFormatComponent = new TargetFormatComponent(new FormBuilder());
     this.convertConfigComponent = new ConvertConfigComponent(new FormBuilder());
     this.isDone = false;
+
   }
 
   getSource(source: string){
@@ -46,9 +49,11 @@ export class ConvertComponent {
 
   convert(){
     var sourceFormat = this.frmStepOne.value["sourceFormat"]
-    var targetFormat = this.frmStepTwo.value["targetFormat"]
+    var targetFormat = this.frmStepTwo.value["targetFormat"]  
     var targetPath = this.getTargetPath(targetFormat, this.frmStepThree.value["targetName"]);
-    
+    this.target = targetPath;
+
+
     var config: ConverterConfig = {
       source: this.frmStepThree.value["sourcePath"],
       target: targetPath

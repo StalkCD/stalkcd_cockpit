@@ -20,17 +20,15 @@
                         <h4>File path: {{frmStepThree.value["sourcePath"]}}</h4>
                         <h4>File Name: {{frmStepThree.value["targetName"]}}</h4>
                         <div>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button (click)="convert()">Convert</button>
+                            <button mat-flat-button color="basic" matStepperPrevious>Back</button>
+                            <button mat-flat-button color="primary" (click)="convert()">Convert</button>
                         </div>
                     </mat-step>
                 </mat-horizontal-stepper>
             </mat-card>
         </mat-grid-tile> 
         <mat-grid-tile *ngIf="isDone" [colspan]="3" [rowspan]="1">
-            <mat-card class="converter-card">
-                <mat-card-title>Converting was successfull.</mat-card-title>
-            </mat-card>
+            <app-convert-success [path]="target"></app-convert-success>
         </mat-grid-tile> 
         <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
     </mat-grid-list>

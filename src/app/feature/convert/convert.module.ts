@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { SourceFormatComponent } from './components/source-format/source-format.component';
 import { TargetFormatComponent } from './components/target-format/target-format.component';
 import { ConvertConfigComponent } from './components/convert-config/convert-config.component';
+import { ConvertSuccessComponent } from './components/convert-success/convert-success.component';
 
 
 
@@ -13,7 +14,9 @@ import { ConvertConfigComponent } from './components/convert-config/convert-conf
   declarations: [
     ConvertComponent, 
     SourceFormatComponent, 
-    TargetFormatComponent, ConvertConfigComponent
+    TargetFormatComponent, 
+    ConvertConfigComponent, 
+    ConvertSuccessComponent
   ],
   imports: [
     CommonModule,
