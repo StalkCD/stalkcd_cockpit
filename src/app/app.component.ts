@@ -14,17 +14,13 @@ export class AppComponent implements OnInit {
   constructor(private characteristicsService: CharacteristicsService) { }
 
   ngOnInit(): void {
-    // localStorage.clear();
+    localStorage.clear();
     this.setCurrentCharacteristics();
   }
 
-  // TODO:
-  // - aktuelle characteristics in localstorage speichern
-  // - wenn nichts zu laden ist, dann empty view zeigen
   setCurrentCharacteristics(){
     const charString = localStorage.getItem('characteristics');
     if(!charString) {
-      this.characteristicsService.getLatestCharacteristics().subscribe();
       return;
     }
     const characteristics: Characteristics = JSON.parse(charString);

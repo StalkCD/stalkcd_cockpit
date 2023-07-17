@@ -36,8 +36,9 @@ export class DownloadModalComponent implements OnInit{
   // - Wenn error dann darf kein haken angezeigt werden sodern eine Error Message
   downloadRepository(){
     this.config = {...this.downloadForm?.value};
+    // TODO: nochmal besser machen, dass depth schon zu begin als number gespeichert wird
+    this.config.depth = parseInt(this.downloadForm.controls['depth'].value,10);
 
-    console.log(this.config);
     this.downloadService.downloadHistoryData(this.config).subscribe({
       next: () => {
         this.isDone = true;
