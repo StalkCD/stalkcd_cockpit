@@ -14,6 +14,8 @@ export class HomeComponent {
     this.characteristicsService.currentCharacteristics$.subscribe({
       next: characteristics => {
         if (characteristics) this.characteristics = characteristics;
+
+        console.log(this.characteristics);
       }
     });
   }

@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
   constructor(private characteristicsService: CharacteristicsService) { }
 
   ngOnInit(): void {
-    localStorage.clear();
     this.setCurrentCharacteristics();
   }
 

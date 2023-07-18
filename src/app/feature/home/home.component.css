@@ -1,13 +1,14 @@
-.kpi-card {
-  width: 100%;
-  padding: 16px;
-  margin-bottom: 1rem;
-}
-
 .grid-container {
   margin-left: 20px;
   margin-right: 20px;
 }
+
+.kpi-card {
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 1rem;
+}
+
 .dashboard-card {
   position: absolute;
   top: 15px;
@@ -17,15 +18,18 @@
   /* box-shadow: none; */
 }
 
+.dashboard-card-top {
+  position: absolute;
+  top: 2px;
+  left: 15px;
+  right: 15px;
+  bottom: 17px; 
+  /* box-shadow: none; */
+}
+
 .dashboard-card__header {
   border-bottom: 1px solid #D5D5E2;
   margin-bottom: 1.5rem;
-}
-
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
 }
 
 .dashboard-card-content {

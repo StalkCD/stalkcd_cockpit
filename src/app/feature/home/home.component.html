@@ -1,28 +1,48 @@
+<ngx-spinner size="medium" [fullScreen]="true"><p class="loading">Loading...</p></ngx-spinner>
+
 <div class="grid-container" *ngIf="!!characteristics">
   <div class="kpi-wrap">
     <mat-grid-list cols="4" rowHeight="120px">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
           <app-kpi-card class="kpi-card"
-                  [title]="'Average Duration'"
+                  [title]="'Average Build Duration'"
                   [duration]="characteristics.avgBuildDuration"
           ></app-kpi-card>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <app-kpi-card class="kpi-card"
-                [title]="'Average Duration'"
-                [duration]="characteristics.avgBuildDuration"
+                [title]="'Average Step Duration'"
+                [duration]="characteristics.totalAvgStepDuration"
+        ></app-kpi-card>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <mat-card class="dashboard-card-top">
+          <!-- <mat-card-header class="dashboard-card__header">
+            <mat-card-title>
+              <h3>Arrival Rate</h3>
+            </mat-card-title>
+          </mat-card-header> -->
+          <mat-card-content>
+            <div>
+              <app-avgstepdurationperstepperjob-chart [pipelineSteps]="characteristics.avgStepDurationPerStepPerJob"></app-avgstepdurationperstepperjob-chart>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <app-kpi-card class="kpi-card"
+                [title]="'Average Successfull Step Duration'"
+                [duration]="characteristics.totalAvgSuccessfulStepDuration"
         ></app-kpi-card>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <app-kpi-card class="kpi-card"
-                [title]="'Average Duration'"
-                [duration]="characteristics.avgBuildDuration"
-        ></app-kpi-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <app-kpi-card class="kpi-card"
-                [title]="'Average Duration'"
-                [duration]="characteristics.avgBuildDuration"
+                [title]="'Placeholder fpr lists'"
+                [duration]="characteristics.totalAvgSuccessfulStepDuration"
         ></app-kpi-card>
       </mat-grid-tile>
     </mat-grid-list>
@@ -66,4 +86,3 @@
   <h2>Please select a repository whose data should be displayed.</h2>
   <button mat-flat-button color="primary" routerLink='/repositorylist' routerLinkActive='active'>Select Repository</button>
 </div>
-

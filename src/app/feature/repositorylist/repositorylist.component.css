@@ -33,3 +33,10 @@ tr.workflow-element-row:not(.workflow-expanded-row):active {
     padding: 5px;
     opacity: 0.6;
 }
+
+.bi-check-circle-fill{
+    color: green;
+}
+.bi-x-circle-fill{
+    color: red;
+}

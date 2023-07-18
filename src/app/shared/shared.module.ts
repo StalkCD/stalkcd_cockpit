@@ -16,11 +16,15 @@ import { MatButtonModule } from "@angular/material/button";
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
+import { ToSecondsPipe } from './pipes/to-seconds.pipe';
+import { ToMinutesPipe } from './pipes/to-minutes.pipe';
 
 
 @NgModule({
   declarations: [
-    DownloadModalComponent
+    DownloadModalComponent,
+    ToSecondsPipe,
+    ToMinutesPipe
   ],
   imports: [
     CommonModule,
@@ -69,7 +73,9 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    ToSecondsPipe,
+    ToMinutesPipe
   ]
 })
 export class SharedModule { }
