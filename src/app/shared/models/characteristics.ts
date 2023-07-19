@@ -7,16 +7,15 @@ export interface Characteristics {
     buildResults: BuildResult[]; //done
 
 
-    // TODO:
-    // - sind die immer dabei doer nur unter bestimmten bedingungn?
+    // TODO: sind die immer dabei doer nur unter bestimmten bedingungn?
 
-    stepsFailed?: any; // Maybe als Liste ?
-    jobsFailed?: any; // Maybe als Liste ?
+    stepsFailed?: any;
+    jobsFailed?: any; 
 
-    totalAvgStepDuration?: any; //done
-    totalAvgSuccessfulStepDuration?: any; //done
+    totalAvgStepDuration?: any;
+    totalAvgSuccessfulStepDuration?: any;
 
 
-    totalAvgStepDurationPerStep?: any; //Als LineCHart ?
-    avgStepDurationPerStepPerJob?: any;  //Als LineCHart ?
+    totalAvgStepDurationPerStep?: any; // Done Als LineCHart is same likavgStepDurationPerStepPerJob lol?
+    avgStepDurationPerStepPerJob?: any;
 }

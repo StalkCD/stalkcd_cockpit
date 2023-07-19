@@ -2,3 +2,16 @@
     color: #333333;
     padding-top: 50px;
 }
+.bi-x-circle-fill{
+    color: red;
+}
+
+.bi-check-circle-fill{
+    color: green;
+}
+
+h5{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 20px;
+}

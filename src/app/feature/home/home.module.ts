@@ -9,6 +9,7 @@ import { BuildresultsChartComponent } from './components/charts/buildresults-cha
 import { NgChartsModule } from 'ng2-charts';
 import { ArrivalrateChartComponent } from './components/charts/arrivalrate-chart/arrivalrate-chart.component';
 import { AvgstepdurationperstepperjobChartComponent } from './components/charts/avgstepdurationperstepperjob-chart/avgstepdurationperstepperjob-chart.component';
+import { CustomCardComponent } from './components/kpis/custom-card/custom-card.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AvgstepdurationperstepperjobChartComponent } from './components/charts/
     KpiCardComponent,
     BuildresultsChartComponent,
     ArrivalrateChartComponent,
-    AvgstepdurationperstepperjobChartComponent
+    AvgstepdurationperstepperjobChartComponent,
+    CustomCardComponent
     ],
   imports: [
     CommonModule,

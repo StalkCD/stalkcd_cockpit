@@ -18,13 +18,17 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { ToSecondsPipe } from './pipes/to-seconds.pipe';
 import { ToMinutesPipe } from './pipes/to-minutes.pipe';
+import { CountElementsPipe } from './pipes/count-elements.pipe';
+import { InformationModalComponent } from './modals/information-modal/information-modal.component';
 
 
 @NgModule({
   declarations: [
     DownloadModalComponent,
     ToSecondsPipe,
-    ToMinutesPipe
+    ToMinutesPipe,
+    CountElementsPipe,
+    InformationModalComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +79,8 @@ import { ToMinutesPipe } from './pipes/to-minutes.pipe';
     MatCheckboxModule,
     MatTableModule,
     ToSecondsPipe,
-    ToMinutesPipe
+    ToMinutesPipe,
+    CountElementsPipe
   ]
 })
 export class SharedModule { }

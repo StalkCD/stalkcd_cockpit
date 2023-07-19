@@ -2,24 +2,37 @@
     /* box-shadow: none; */
     height: 100px;
     box-sizing: border-box;
-  }
+}
+
+.card-content{
+    top: -45px;
+}
+
 .kpi-title {
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: 18px;
     letter-spacing: 0.02em;
-    text-align: left;
+    text-align: center;
     color: #A1A1B5;
     margin: 0 8px;
 }
+
 .kpi-result {
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
-    letter-spacing: 0;
-    text-align: left;
+    letter-spacing: 0.02em;
+    text-align: center;
     color: #43436B;
     margin: 0 8px;
+} 
+
+i{
+    width: 16px;
+    height: 16px;
+    margin: 0 -8px;
+    cursor: pointer;
 }

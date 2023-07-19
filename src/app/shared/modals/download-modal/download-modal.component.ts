@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DownloadService } from '../../services/download.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DownloadConfig } from '../../models/downloadConfig';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-download-modal',
@@ -12,9 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 export class DownloadModalComponent implements OnInit{
   downloadForm: FormGroup = new FormGroup({});
   config!: DownloadConfig;
-  isDone = false;
+  isDone: boolean = false;
+  wasSuccessful!: boolean;
 
-  constructor(private formBuilder: FormBuilder, private downloadService: DownloadService, private toastrService: ToastrService) { }
+  constructor(private formBuilder: FormBuilder, private downloadService: DownloadService) { }
 
   ngOnInit(){
     this.initializeForm();
@@ -26,14 +26,12 @@ export class DownloadModalComponent implements OnInit{
       repoOwner: ['', Validators.required],
       workflowName: ['', Validators.required],
       gitHubToken: ['', Validators.required],
-      saveTo: ['', Validators.required],
+      saveTo: ['db', Validators.required],
       depth: ['', Validators.required],
       pages: ['', Validators.required]
     });
   }
 
-  // TODO:
-  // - Wenn error dann darf kein haken angezeigt werden sodern eine Error Message
   downloadRepository(){
     this.config = {...this.downloadForm?.value};
     // TODO: nochmal besser machen, dass depth schon zu begin als number gespeichert wird
@@ -42,10 +40,11 @@ export class DownloadModalComponent implements OnInit{
     this.downloadService.downloadHistoryData(this.config).subscribe({
       next: () => {
         this.isDone = true;
-        this.toastrService.success("Repository downloaded successfully", "Success");
+        this.wasSuccessful = true;
       },
       error: (err) => {
-        this.toastrService.error(err.error.message, "Error");
+        this.isDone = true;
+        this.wasSuccessful = false;
       }
     });
   }

@@ -32,7 +32,6 @@
         </mat-card>
       </mat-grid-tile>
 
-
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <app-kpi-card class="kpi-card"
                 [title]="'Average Successfull Step Duration'"
@@ -40,10 +39,10 @@
         ></app-kpi-card>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <app-kpi-card class="kpi-card"
-                [title]="'Placeholder fpr lists'"
-                [duration]="characteristics.totalAvgSuccessfulStepDuration"
-        ></app-kpi-card>
+        <app-custom-card class="kpi-card"
+        [stepsFailed]="characteristics.stepsFailed"
+        [jobsFailed]="characteristics.jobsFailed">
+        </app-custom-card>
       </mat-grid-tile>
     </mat-grid-list>
   </div>

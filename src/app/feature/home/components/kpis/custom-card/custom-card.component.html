@@ -1,0 +1,22 @@
+<mat-card class="dashboard-card">
+    <mat-card-header>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-grid-list class="card-content" cols="2">
+            <mat-grid-tile [colspan]="1">
+                <div>
+                    <div class="kpi-title">Failed Steps</div> 
+                    <div class="kpi-result">{{stepsFailed | countElements}}</div>
+                </div>
+                <i class="bi bi-info-circle" (click)="openInformationModal(stepsFailed)"></i>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1">
+                <div>
+                    <div class="kpi-title">Failed Jobs</div> 
+                    <div class="kpi-result">{{jobsFailed | countElements}}</div>
+                </div>
+                <i class="bi bi-info-circle" (click)="openInformationModal(jobsFailed)"></i>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+</mat-card>
