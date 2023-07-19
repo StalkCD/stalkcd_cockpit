@@ -1,0 +1,9 @@
+.chart {
+    position:absolute;
+    top: 36px;
+    bottom: 5px;
+    left: 2px;
+    right: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}

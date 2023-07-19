@@ -20,13 +20,8 @@ export class ArrivalrateChartComponent implements OnInit{
 
   public lineChartOptions: ChartOptions = {
     responsive: true,
-    elements: {
-      line: {
-        tension: 0.5
-      }
-    },
+    maintainAspectRatio: false,
     scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
       y: {
         position: 'left',
         grid: {

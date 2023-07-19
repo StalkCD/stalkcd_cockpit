@@ -18,43 +18,9 @@ export class AvgstepdurationperstepperjobChartComponent implements OnInit{
       }],
     labels: []
   };
-
-  // public config: ChartConfiguration = {
-  //   type: 'line',
-  //   data: data,
-  //   options: {
-  //     responsive: true,
-  //     plugins: {
-  //       legend: {
-  //         position: 'top',
-  //       },
-  //       title: {
-  //         display: true,
-  //         text: 'Chart.js Line Chart'
-  //       }
-  //     }
-  //   },
-  // };
-
   public lineChartOptions: ChartOptions = {
     responsive: true,
-    elements: {
-      line: {
-        tension: 0.5
-      }
-    },
-    scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      y: {
-        position: 'left',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red'
-        }
-      }
-    },
+    maintainAspectRatio: false,
     plugins: {
       legend: { display: false },
     }
@@ -63,10 +29,10 @@ export class AvgstepdurationperstepperjobChartComponent implements OnInit{
   constructor() {
     this.lineChartType = 'line';
   }
+
   ngOnInit(): void {
     this.createChart();
   }
-
 
   createChart() {
     var data = this.pipelineSteps.reverse();
@@ -74,17 +40,25 @@ export class AvgstepdurationperstepperjobChartComponent implements OnInit{
     this.lineChartData = {
       datasets: [
         {
-          data: data.map(x => x.avgDur),
-          label: 'Arrival Rate',
-          backgroundColor: 'rgba(255,0,0,0.3)',
+          data: data.map(x => this.toSeconds(x.avgDur)),
+          label: 'Avg. Duration',
           borderColor: 'blue',
           pointBackgroundColor: 'rgba(255,159,177,1)',
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-          fill: 'origin',
+          pointHoverBorderColor: 'rgba(148,159,177,0.8)'
         }],
-      labels: data.map(x => x.step)
+      labels: data.map(x => this.shortenText(x.step))
     };
+  }
+
+  private toSeconds(duration: number): number {
+    var seconds = duration / 1000;  
+    return Number(seconds.toFixed(2));
+  }
+
+  private shortenText(text: string): string {
+    var length = 6;
+    return text.length > length ? text.substring(0, length) + "..." : text;
   }
 }

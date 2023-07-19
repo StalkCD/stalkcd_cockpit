@@ -30,9 +30,24 @@
 .dashboard-card__header {
   border-bottom: 1px solid #D5D5E2;
   margin-bottom: 1.5rem;
+  height: 36px;
+}
+
+.header{
+  margin-top: -5px;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  color: #A1A1B5;
 }
 
 .dashboard-card-content {
+  padding-right: 100px;
+}
+
+.dashboard-doughnut-content {
   text-align: center;
 }
 
