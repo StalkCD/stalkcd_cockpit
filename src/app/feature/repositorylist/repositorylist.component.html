@@ -1,10 +1,14 @@
 <ngx-spinner size="medium" [fullScreen]="true"><p class="loading">Loading...</p></ngx-spinner>
 
 <div class="grid-container">
-    <button mat-flat-button color="primary" (click)="openDownloadModal()">Download</button>
+    <button mat-fab color="primary" class="addButton" (click)="openDownloadModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#FFFFFF" class="bi bi-plus" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+          </svg>
+    </button>
     <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        <mat-label>Search...</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="..." #input>
     </mat-form-field>
     <table mat-table [dataSource]="datasource" multiTemplateDataRows class="mat-elevation-z8">
         <ng-container matColumnDef="name">

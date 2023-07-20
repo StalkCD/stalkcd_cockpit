@@ -28,7 +28,7 @@ export class AvgstepdurationperstepperjobChartComponent implements OnInit{
           display: false
         },
         ticks: {
-          color: 'blue',
+          color: '#212121',
           callback(value, index){
             var label = this.getLabelForValue(index);
             if(label.length > 6) {
@@ -41,7 +41,7 @@ export class AvgstepdurationperstepperjobChartComponent implements OnInit{
       },
       y: {
         ticks: {
-          color: 'blue',
+          color: '#212121',
           callback(value, index){
             return value + "s";
           }
@@ -76,12 +76,13 @@ export class AvgstepdurationperstepperjobChartComponent implements OnInit{
       datasets: [
         {
           data: data.map(x => this.toSeconds(x.avgDur)),
-          label: 'Avg. Duration',
-          borderColor: 'blue',
-          pointBackgroundColor: 'rgba(255,159,177,1)',
+          label: 'Arrival Rate',
+          backgroundColor: 'rgba(179,229,252,0.3)',
+          borderColor: '#CDDC39',
+          pointBackgroundColor: '#0288d1',
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+          pointHoverBorderColor: '#CDDC39',
         }],
       labels: data.map(x => x.step)
     };

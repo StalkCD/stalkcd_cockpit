@@ -3,8 +3,17 @@
     margin-right: 20px;
 }
 
+.addButton{
+    float: right;
+    top: 50px;
+    right: 15px;
+}
+
+
 table {
     width: 100%;
+    background-color: #FFFFFF;
+    /* box-shadow: none; */
 }
 
 tr.workflow-detail-row {

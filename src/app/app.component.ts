@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacteristicsService } from './shared/services/characteristics.service';
 import { Characteristics } from './shared/models/characteristics';
-import { CharacteristicsConfig } from './shared/models/characteristicsConfig';
 
 @Component({
   selector: 'app-root',

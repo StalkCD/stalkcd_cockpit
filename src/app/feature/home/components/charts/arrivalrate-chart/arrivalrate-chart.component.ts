@@ -27,7 +27,7 @@ export class ArrivalrateChartComponent implements OnInit{
           display: false,
         },
         ticks: {
-          color: 'blue',
+          color: '#212121',
           callback(value, index){
             var label = this.getLabelForValue(index).split("/");
             var year = label[0];
@@ -41,7 +41,7 @@ export class ArrivalrateChartComponent implements OnInit{
       },
       y: {
         ticks: {
-          color: 'blue'
+          color: '#212121'
         }
       }
     },
@@ -65,13 +65,15 @@ export class ArrivalrateChartComponent implements OnInit{
         {
           data: data.map(x => x.count),
           label: 'Arrival Rate',
-          backgroundColor: 'rgba(255,0,0,0.3)',
-          borderColor: 'blue',
-          pointBackgroundColor: 'rgba(255,159,177,1)',
+          backgroundColor: 'rgba(179,229,252,0.3)',
+          borderColor: '#0288d1',
+          pointBackgroundColor: '#CDDC39',
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-          fill: 'origin',
+          pointHoverBorderColor: '#0288D1',
+          fill: {
+            target: 'origin',
+          }
         }],
       labels: data.map(x => x.date)
     };

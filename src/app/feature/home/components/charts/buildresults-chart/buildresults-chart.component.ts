@@ -19,12 +19,14 @@ export class BuildresultsChartComponent implements OnInit{
   };
   public chartType: ChartType = 'doughnut';
   public chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
     legend: {
       display: false
     },
-    responsive: true,
     cutout: '70%',
   };
+
   public chartLegend = true;
   public value = 0;
 
@@ -38,7 +40,14 @@ export class BuildresultsChartComponent implements OnInit{
      this.chartLabels = this.buildResults.map(x => x.result);
      this.chartData = {
       datasets: [
-        { data: this.buildResults.map(x => x.count) }
+        { 
+          data: this.buildResults.map(x => x.count),
+          backgroundColor: [
+            '#ff0033', //failure
+            '#4BB543', //success
+            '#F9D423', //required
+          ]
+        }
       ]
      };
      this.value = this.buildResults.reduce((sum, current) => sum + current.count, 0);

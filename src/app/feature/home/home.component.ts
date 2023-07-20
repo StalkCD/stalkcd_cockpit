@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { Characteristics } from 'src/app/shared/models/characteristics';
 import { CharacteristicsService } from 'src/app/shared/services/characteristics.service';
 
@@ -7,14 +7,18 @@ import { CharacteristicsService } from 'src/app/shared/services/characteristics.
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent{
   characteristics!: Characteristics;
 
-  constructor(private characteristicsService: CharacteristicsService) {
+  constructor(private characteristicsService: CharacteristicsService, private elementRef: ElementRef) {
     this.characteristicsService.currentCharacteristics$.subscribe({
       next: characteristics => {
         if (characteristics) this.characteristics = characteristics;
       }
     });
   }
+  // ngAfterViewInit(): void {
+  //   this.elementRef.nativeElement.ownerDocument
+  //   .body.style.backgroundColor = '#f6f6f6';
+  // }
 }
