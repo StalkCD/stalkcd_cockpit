@@ -22,13 +22,26 @@ export class ArrivalrateChartComponent implements OnInit{
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      y: {
-        position: 'left',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
+      x: {
+        grid:{
+          display: false,
         },
         ticks: {
-          color: 'red'
+          color: 'blue',
+          callback(value, index){
+            var label = this.getLabelForValue(index).split("/");
+            var year = label[0];
+            var month = label[1];
+            var day = label[2];
+
+            var formatedDate = day +"."+ month +"."+ year;
+            return formatedDate;
+          }
+        }
+      },
+      y: {
+        ticks: {
+          color: 'blue'
         }
       }
     },

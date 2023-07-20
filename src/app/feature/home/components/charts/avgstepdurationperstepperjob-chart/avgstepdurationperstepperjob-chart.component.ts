@@ -10,6 +10,7 @@ import { PipelineStep } from 'src/app/shared/models/pipelineStep';
 export class AvgstepdurationperstepperjobChartComponent implements OnInit{
   @Input() pipelineSteps!: PipelineStep[];
 
+  data: any[] = [];
   public lineChartType: ChartType;
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
@@ -21,8 +22,42 @@ export class AvgstepdurationperstepperjobChartComponent implements OnInit{
   public lineChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    scales: {
+      x: {
+        grid:{
+          display: false
+        },
+        ticks: {
+          color: 'blue',
+          callback(value, index){
+            var label = this.getLabelForValue(index);
+            if(label.length > 6) {
+              return label.substring(0, 6) + "...";
+            }else{
+              return label;
+            }
+          }
+        }
+      },
+      y: {
+        ticks: {
+          color: 'blue',
+          callback(value, index){
+            return value + "s";
+          }
+        },
+      }
+    },
     plugins: {
       legend: { display: false },
+      tooltip:{
+        callbacks:{
+          label: (context) => {
+            var label = context.dataset.label + ': ' + context.dataset['data'][context.dataIndex]+ 's';
+            return label;
+          }
+        }
+      }
     }
   };
 
@@ -48,17 +83,12 @@ export class AvgstepdurationperstepperjobChartComponent implements OnInit{
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'rgba(148,159,177,0.8)'
         }],
-      labels: data.map(x => this.shortenText(x.step))
+      labels: data.map(x => x.step)
     };
   }
 
   private toSeconds(duration: number): number {
     var seconds = duration / 1000;  
     return Number(seconds.toFixed(2));
-  }
-
-  private shortenText(text: string): string {
-    var length = 6;
-    return text.length > length ? text.substring(0, length) + "..." : text;
   }
 }
