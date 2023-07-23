@@ -20,6 +20,10 @@ import { ToSecondsPipe } from './pipes/to-seconds.pipe';
 import { ToMinutesPipe } from './pipes/to-minutes.pipe';
 import { CountElementsPipe } from './pipes/count-elements.pipe';
 import { InformationModalComponent } from './modals/information-modal/information-modal.component';
+import { DragAndDropDirective } from './directives/drag-and-drop.directive';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { UploadModalComponent } from './modals/upload-modal/upload-modal.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -28,7 +32,10 @@ import { InformationModalComponent } from './modals/information-modal/informatio
     ToSecondsPipe,
     ToMinutesPipe,
     CountElementsPipe,
-    InformationModalComponent
+    InformationModalComponent,
+    DragAndDropDirective,
+    ProgressBarComponent,
+    UploadModalComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +57,8 @@ import { InformationModalComponent } from './modals/information-modal/informatio
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -80,7 +88,10 @@ import { InformationModalComponent } from './modals/information-modal/informatio
     MatTableModule,
     ToSecondsPipe,
     ToMinutesPipe,
-    CountElementsPipe
+    CountElementsPipe,
+    DragAndDropDirective,
+    ProgressBarComponent,
+    MatSelectModule
   ]
 })
 export class SharedModule { }

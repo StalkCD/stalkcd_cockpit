@@ -2,12 +2,9 @@ import { ArrivalRate } from "./arrivalRate";
 import { BuildResult } from "./buildResult";
 
 export interface Characteristics {
-    avgBuildDuration: number; //done
-    arrivalRate: ArrivalRate[]; //done
-    buildResults: BuildResult[]; //done
-
-
-    // TODO: sind die immer dabei doer nur unter bestimmten bedingungn?
+    avgBuildDuration: number;
+    arrivalRate: ArrivalRate[];
+    buildResults: BuildResult[];
 
     stepsFailed?: any;
     jobsFailed?: any; 
@@ -16,6 +13,6 @@ export interface Characteristics {
     totalAvgSuccessfulStepDuration?: any;
 
 
-    totalAvgStepDurationPerStep?: any; // Done Als LineCHart is same likavgStepDurationPerStepPerJob lol?
+    totalAvgStepDurationPerStep?: any; // TODO: Done Als LineCHart is same likavgStepDurationPerStepPerJob lol?
     avgStepDurationPerStepPerJob?: any;
 }

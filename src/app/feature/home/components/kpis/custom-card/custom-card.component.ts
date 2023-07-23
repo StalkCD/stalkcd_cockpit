@@ -17,7 +17,6 @@ export class CustomCardComponent {
     this.dialog.open(InformationModalComponent, {
       data: elements
     });
-    console.log(elements);
   }
 
 }

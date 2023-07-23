@@ -1,0 +1,4 @@
+<div class="progress-cont">
+    <div *ngIf="progress < 100" class="progress" [style.width]="progress + '%'"></div>
+    <div *ngIf="progress == 100" class="progress progress-done" [style.width]="progress + '%'"></div>
+</div>

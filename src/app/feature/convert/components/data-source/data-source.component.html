@@ -1,0 +1,33 @@
+<mat-card class="converter-card-content">
+	<form [formGroup]="frmStepOne">
+		<mat-card-title class="title">Where does the file come from?</mat-card-title>
+		<mat-grid-list cols="2" rowHeight="250px">
+			<mat-grid-tile [colspan]="1" [rowspan]="1">
+				<mat-card class="format-card">
+					<input type="radio" id="uploadFile" formControlName="sourceOrigin" value="0">
+					<label for="uploadFile">
+						<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cloud-arrow-up-fill" viewBox="0 0 16 16">
+							<path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2z"/>
+						</svg>
+						<h2>Upload the file</h2>
+					</label>
+				</mat-card>
+			</mat-grid-tile>
+			<mat-grid-tile [colspan]="1" [rowspan]="1">
+				<mat-card class="format-card">
+					<input type="radio" id="fileAvailable" formControlName="sourceOrigin" value="1">
+					<label for="fileAvailable">
+						<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
+							<path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z"/>
+						</svg>
+						<h2>File already saved</h2>
+					</label>
+				</mat-card>
+			</mat-grid-tile>
+		</mat-grid-list>
+	
+  	    <mat-card-actions>
+			<button mat-button matStepperNext (click)="setOrigin()">Next</button>
+		</mat-card-actions>
+	</form>
+</mat-card>

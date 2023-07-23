@@ -7,16 +7,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./source-format.component.css']
 })
 export class SourceFormatComponent {
-  frmStepOne: FormGroup;
+  frmStepThree: FormGroup;
   @Output() source = new EventEmitter<string>();
 
   constructor(private fb: FormBuilder) {
-    this.frmStepOne = this.fb.group({
+    this.frmStepThree = this.fb.group({
       sourceFormat: ['', Validators.required],
     });
   }
 
   setSource(){
-    this.source.emit(this.frmStepOne.value["sourceFormat"]);
+    this.source.emit(this.frmStepThree.value["sourceFormat"]);
   }
 }

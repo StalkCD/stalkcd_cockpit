@@ -7,6 +7,7 @@ import { SourceFormatComponent } from './components/source-format/source-format.
 import { TargetFormatComponent } from './components/target-format/target-format.component';
 import { ConvertConfigComponent } from './components/convert-config/convert-config.component';
 import { ConvertSuccessComponent } from './components/convert-success/convert-success.component';
+import { DataSourceComponent } from './components/data-source/data-source.component';
 
 
 
@@ -16,7 +17,8 @@ import { ConvertSuccessComponent } from './components/convert-success/convert-su
     SourceFormatComponent, 
     TargetFormatComponent, 
     ConvertConfigComponent, 
-    ConvertSuccessComponent
+    ConvertSuccessComponent, 
+    DataSourceComponent
   ],
   imports: [
     CommonModule,
