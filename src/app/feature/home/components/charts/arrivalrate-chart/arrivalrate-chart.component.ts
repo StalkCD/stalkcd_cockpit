@@ -59,6 +59,7 @@ export class ArrivalrateChartComponent implements OnInit{
   }
 
   createChart() {
+    // TODO: wird bei jedem reload erneut gedreht das darf nicht sein (muss wohl weiter oben passieren)
     var data = this.arrivalRate.reverse();
     this.lineChartData = {
       datasets: [

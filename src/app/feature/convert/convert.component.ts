@@ -5,7 +5,6 @@ import { ConverterService } from 'src/app/shared/services/converter.service';
 import { ConvertConfigComponent } from './components/convert-config/convert-config.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { DataSourceComponent } from './components/data-source/data-source.component';
 
 @Component({
   selector: 'app-convert',
@@ -13,37 +12,28 @@ import { DataSourceComponent } from './components/data-source/data-source.compon
   styleUrls: ['./convert.component.css']
 })
 export class ConvertComponent {
-  @ViewChild(DataSourceComponent) dataSourceComponent: DataSourceComponent;
   @ViewChild(SourceFormatComponent) sourceFormatComponent: SourceFormatComponent;
   @ViewChild(TargetFormatComponent) targetFormatComponent: TargetFormatComponent;
   @ViewChild(ConvertConfigComponent) convertConfigComponent: ConvertConfigComponent;
-  origin: string;
   source: string;
   target: string;
   isDone: boolean;
 
   get frmStepOne() {
-    return this.dataSourceComponent.frmStepOne;
+    return this.convertConfigComponent.frmStepOne;
   }
 
   get frmStepTwo() {
-    return this.convertConfigComponent.frmStepTwo;
+    return this.sourceFormatComponent.frmStepTwo;
   }
 
   get frmStepThree() {
-    return this.sourceFormatComponent.frmStepThree;
+    return this.targetFormatComponent.frmStepThree;
   }
-
-  get frmStepFour() {
-    return this.targetFormatComponent.frmStepFour;
-  }
-
 
   constructor(private converterService: ConverterService, private toastrService: ToastrService) {
-    this.origin = '';
     this.source = '';
     this.target = '';
-    this.dataSourceComponent = new DataSourceComponent(new FormBuilder());
     this.sourceFormatComponent = new SourceFormatComponent(new FormBuilder());
     this.targetFormatComponent = new TargetFormatComponent(new FormBuilder());
     this.convertConfigComponent = new ConvertConfigComponent(new FormBuilder());
@@ -55,13 +45,9 @@ export class ConvertComponent {
     this.source = source;
   }
 
-  getOrigin(origin: string){
-    this.origin = origin;
-  }
-
   convert(){
-    var sourceFormat = this.frmStepThree.value["sourceFormat"]
-    var targetFormat = this.frmStepFour.value["targetFormat"]  
+    var sourceFormat = this.frmStepTwo.value["sourceFormat"]
+    var targetFormat = this.frmStepThree.value["targetFormat"]  
     // var targetPath = this.getTargetPath(targetFormat, this.frmStepThree.value["targetName"]);
     // this.target = targetPath;
 

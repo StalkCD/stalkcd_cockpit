@@ -8,11 +8,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class TargetFormatComponent{
   @Input() sourceFormat: string;
-  frmStepFour: FormGroup;
+  frmStepThree: FormGroup;
 
   constructor(private fb: FormBuilder) {
     this.sourceFormat = '';
-    this.frmStepFour = this.fb.group({
+    this.frmStepThree = this.fb.group({
       targetFormat: ['', Validators.required],
     });
   }

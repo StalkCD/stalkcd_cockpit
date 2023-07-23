@@ -1,13 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
-
-
 @Component({
   selector: 'app-convert-config',
   templateUrl: './convert-config.component.html',
@@ -15,25 +8,15 @@ interface Food {
 })
 export class ConvertConfigComponent{
   @ViewChild('fileDropRef', {static: false}) fileDropEl!: ElementRef;
-  @Input() fileOrigin: string;
   files: any[] = [];
 
-  frmStepTwo: FormGroup;
+  frmStepOne: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.fileOrigin = '';
-    this.frmStepTwo = this.fb.group({
+    this.frmStepOne = this.fb.group({
       fileName: ['', Validators.required],
     });
   }
-
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
-
-
 
   //Wenn Datei per Drag and Droprein geworfen wird
   onFileDropped($event: any) {

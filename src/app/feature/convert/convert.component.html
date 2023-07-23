@@ -5,23 +5,19 @@
             <mat-card class="converter-card">
                 <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
                     <mat-step [stepControl]="frmStepOne">
-                        <app-data-source (origin)="getOrigin($event)"></app-data-source>
+                        <app-convert-config></app-convert-config>
                     </mat-step>
                     <mat-step [stepControl]="frmStepTwo">
-                        <app-convert-config [fileOrigin]="origin"></app-convert-config>
-                    </mat-step>
-                    <mat-step [stepControl]="frmStepThree">
                         <app-source-format (source)="getSource($event)"></app-source-format>
                     </mat-step>
-                    <mat-step [stepControl]="frmStepFour">
+                    <mat-step [stepControl]="frmStepThree">
                         <app-target-format [sourceFormat]="source"></app-target-format>
                     </mat-step>
                     <mat-step>
                         <!-- TODO: Overview Component erstellen, bei den der Name geändert werden kann -->
                         <h2>Overview</h2>
-                        <h4>Source format: {{frmStepThree.value["sourceFormat"]}}</h4>
-                        <h4>Target format: {{frmStepFour.value["targetFormat"]}}</h4>
-                        <h4>Name of prigon FIle: {{frmStepTwo.value["fileName"]}}</h4>
+                        <h4>Source format: {{frmStepTwo.value["sourceFormat"]}}</h4>
+                        <h4>Target format: {{frmStepThree.value["targetFormat"]}}</h4>
                         <!-- <h4>File path: {{frmStepThree.value["sourcePath"]}}</h4>
                         <h4>File Name: {{frmStepThree.value["targetName"]}}</h4> -->
 
