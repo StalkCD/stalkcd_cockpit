@@ -25,6 +25,14 @@ export class ConverterService {
     return this.http.post(this.downloadURL, config);
   }
 
+  // TODO: muss im backend programmiert werden
+  uploadFile(formData: any){
+    return this.http.post(this.convertURL + 'upload', formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+
   private getURL(sourceFormat: string, targetFormat: string): string {
     return sourceFormat + 'to' + targetFormat;
   }

@@ -5,6 +5,7 @@ import { ConverterService } from 'src/app/shared/services/converter.service';
 import { ConvertConfigComponent } from './components/convert-config/convert-config.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ConverterConfig } from 'src/app/shared/models/converterConfig';
 
 @Component({
   selector: 'app-convert',
@@ -18,6 +19,7 @@ export class ConvertComponent {
   source: string;
   target: string;
   isDone: boolean;
+  frmStepFinal: FormGroup;
 
   get frmStepOne() {
     return this.convertConfigComponent.frmStepOne;
@@ -31,14 +33,16 @@ export class ConvertComponent {
     return this.targetFormatComponent.frmStepThree;
   }
 
-  constructor(private converterService: ConverterService, private toastrService: ToastrService) {
+  constructor(private fb: FormBuilder, private converterService: ConverterService, private toastrService: ToastrService) {
     this.source = '';
     this.target = '';
     this.sourceFormatComponent = new SourceFormatComponent(new FormBuilder());
     this.targetFormatComponent = new TargetFormatComponent(new FormBuilder());
-    this.convertConfigComponent = new ConvertConfigComponent(new FormBuilder());
+    this.convertConfigComponent = new ConvertConfigComponent(new FormBuilder(), this.converterService);
     this.isDone = false;
-
+    this.frmStepFinal = this.fb.group({
+      newName: ['', Validators.required]
+    });
   }
 
   getSource(source: string){
@@ -48,14 +52,17 @@ export class ConvertComponent {
   convert(){
     var sourceFormat = this.frmStepTwo.value["sourceFormat"]
     var targetFormat = this.frmStepThree.value["targetFormat"]  
-    // var targetPath = this.getTargetPath(targetFormat, this.frmStepThree.value["targetName"]);
-    // this.target = targetPath;
 
+    var path = this.frmStepOne.value["path"] + this.frmStepOne.value["fileName"] + "." + this.frmStepOne.value["format"];
+    var targetPath = this.getTargetPath(targetFormat, this.frmStepFinal.value["newName"]);
+    this.target = targetPath;
 
-    // var config: ConverterConfig = {
-    //   source: this.frmStepThree.value["sourcePath"],
-    //   target: targetPath
-    // }
+    var config: ConverterConfig = {
+      source: path,
+      target: targetPath
+    }
+
+    console.log(config);
 
     // this.converterService.convertFile(config, sourceFormat, targetFormat).subscribe({
     //   next: () => {

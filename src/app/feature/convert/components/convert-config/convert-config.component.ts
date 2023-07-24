@@ -1,5 +1,8 @@
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Observable, Subscription, finalize } from 'rxjs';
+import { ConverterService } from 'src/app/shared/services/converter.service';
 
 @Component({
   selector: 'app-convert-config',
@@ -8,60 +11,70 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ConvertConfigComponent{
   @ViewChild('fileDropRef', {static: false}) fileDropEl!: ElementRef;
-  files: any[] = [];
-
+  files: any[];
   frmStepOne: FormGroup;
+  isDone: boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  uploadProgress!: number;
+  uploadSub!: Subscription;
+
+  constructor(private fb: FormBuilder, private converterService: ConverterService) {
+    this.files = [];
     this.frmStepOne = this.fb.group({
       fileName: ['', Validators.required],
+      path: ['', Validators.required],
+      format: ['', Validators.required]
     });
   }
 
-  //Wenn Datei per Drag and Droprein geworfen wird
   onFileDropped($event: any) {
-    this.prepareFilesList($event);
+    this.uploadFile($event);
   }
 
-  //Wenn Datei per Button ausgewählt wird
   fileBrowseHandler($event: any) {
     let files = $event.target.files!;
-    this.prepareFilesList(files);
+    this.uploadFile(files);
   }
 
-  deleteFile(index: number) {
-    if (this.files[index].progress < 100) {
-      console.log('Upload in progress.');
-      return;
-    }
-    this.files.splice(index, 1);
-  }
+  uploadFile(files: Array<any>){
+    const file:File = files[0];
+    this.files.push(file);
 
-  uploadFilesSimulator(index: number) {
-    setTimeout(() => {
-      if (index === this.files.length) {
-        return;
-      } else {
-        const progressInterval = setInterval(() => {
-          if (this.files[index].progress === 100) {
-            clearInterval(progressInterval);
-            this.uploadFilesSimulator(index + 1);
-          } else {
-            this.files[index].progress += 5;
+    if(file){
+      const formData:FormData = new FormData();
+
+      formData.append('fileName', file.name);
+      formData.append('file', file);
+
+      const upload$ = this.converterService.uploadFile(formData);
+
+      this.uploadSub = upload$.subscribe(
+        (event:HttpEvent<any>) => {
+          switch (event.type) {
+            case HttpEventType.UploadProgress:
+              this.uploadProgress = Math.round(100 * event.loaded  / event.total!);
+              break;
+            case HttpEventType.Response:
+              setTimeout(() => {
+                this.uploadProgress = 0;
+                this.isDone = true;
+              }, 1500);
+              this.frmStepOne.patchValue({
+                path: event.body.path,
+                fileName: event.body.name,
+                format: event.body.format
+              });
           }
-        }, 200);
-      }
-    }, 1000);
+        }
+      );
+    }
   }
 
-  prepareFilesList(files: Array<any>) {
-    for (const item of files) {
-      item.progress = 0;
-      this.files.push(item);
-    }
-    console.log(this.files);
-    this.fileDropEl.nativeElement.value = "";
-    this.uploadFilesSimulator(0);
+  cancelUpload() {
+    this.uploadSub.unsubscribe();
+    this.uploadProgress = 0;
+    this.files.splice(0, 1);
+    this.isDone = false;
   }
 
   formatBytes(bytes: number, decimals = 2) {
