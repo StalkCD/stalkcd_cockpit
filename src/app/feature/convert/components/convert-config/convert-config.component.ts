@@ -1,7 +1,7 @@
 import { HttpEvent, HttpEventType } from '@angular/common/http';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Observable, Subscription, finalize } from 'rxjs';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { ConverterService } from 'src/app/shared/services/converter.service';
 
 @Component({
@@ -53,6 +53,7 @@ export class ConvertConfigComponent{
           switch (event.type) {
             case HttpEventType.UploadProgress:
               this.uploadProgress = Math.round(100 * event.loaded  / event.total!);
+              console.log(this.uploadProgress);
               break;
             case HttpEventType.Response:
               setTimeout(() => {

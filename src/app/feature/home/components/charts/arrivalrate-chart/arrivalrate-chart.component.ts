@@ -59,8 +59,7 @@ export class ArrivalrateChartComponent implements OnInit{
   }
 
   createChart() {
-    // TODO: wird bei jedem reload erneut gedreht das darf nicht sein (muss wohl weiter oben passieren)
-    var data = this.arrivalRate.reverse();
+    var data = this.arrivalRate.sort((a, b) => a.date.localeCompare(b.date));
     this.lineChartData = {
       datasets: [
         {

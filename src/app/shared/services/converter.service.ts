@@ -20,7 +20,6 @@ export class ConverterService {
     return this.http.post<ApiResponse>(this.uRL + converterString, converterConfig);
   }
 
-  // TODO: tutorila umsetzen, wennd er Zugriff mit der DB funktioniert
   getFile(config: ConverterPath){
     return this.http.post(this.uRL + 'getFile', 
       config, 

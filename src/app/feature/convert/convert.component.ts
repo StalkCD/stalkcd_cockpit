@@ -20,6 +20,7 @@ export class ConvertComponent {
   target: string;
   isDone: boolean;
   frmStepFinal: FormGroup;
+  success: boolean;
 
   get frmStepOne() {
     return this.convertConfigComponent.frmStepOne;
@@ -43,6 +44,7 @@ export class ConvertComponent {
     this.frmStepFinal = this.fb.group({
       newName: ['', Validators.required]
     });
+    this.success = false;
   }
 
   getSource(source: string){
@@ -70,10 +72,12 @@ export class ConvertComponent {
     this.converterService.convertFile(config, sourceFormat, targetFormat).subscribe({
       next: () => {
         this.isDone = true;
+        this.success = true;
         this.toastrService.success("File converted successfully", "Success");
       },
       error: (err) => {
         this.isDone = false;
+        this.success = false;
         this.toastrService.error(err.error.message, "Error");
       }
     });

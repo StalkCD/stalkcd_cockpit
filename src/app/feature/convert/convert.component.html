@@ -32,7 +32,7 @@
         </mat-card>
     </mat-grid-tile> 
     <mat-grid-tile *ngIf="isDone" [colspan]="3" [rowspan]="1">
-        <app-convert-success [path]="target"></app-convert-success>
+        <app-convert-success [path]="target" [status]="success"></app-convert-success>
     </mat-grid-tile> 
     <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
 </mat-grid-list>

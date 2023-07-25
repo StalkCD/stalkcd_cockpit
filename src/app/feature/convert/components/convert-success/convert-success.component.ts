@@ -11,9 +11,11 @@ import { saveAs } from 'file-saver';
 })
 export class ConvertSuccessComponent {
   @Input() path: string;
+  @Input() status: boolean;
 
   constructor(private converterService: ConverterService, private toastrService: ToastrService) { 
     this.path= '';
+    this.status = false;
   }
   
   getFile():void{

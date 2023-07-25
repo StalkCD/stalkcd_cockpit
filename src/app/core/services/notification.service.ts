@@ -12,7 +12,6 @@ export class NotificationService {
     this.toastr.success(message, title);
   }
 
-  // TODO: Toastr funktioniert noch nicht
   showError(message: string, title: string) {
     this.toastr.error(message, title);
   }
