@@ -13,6 +13,6 @@ export interface Characteristics {
     totalAvgSuccessfulStepDuration?: any;
 
 
-    totalAvgStepDurationPerStep?: any; // TODO: Done Als LineCHart is same likavgStepDurationPerStepPerJob lol?
+    totalAvgStepDurationPerStep?: any; // TODO: wird nicht verwendet, da es ide sleben Daten sind wie avgStepDurationPerStepPerJob
     avgStepDurationPerStepPerJob?: any;
 }

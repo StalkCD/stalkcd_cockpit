@@ -8,26 +8,28 @@ import { ConverterPath } from '../models/converterPath';
   providedIn: 'root'
 })
 export class ConverterService {
-  private convertURL: string = 'http://localhost:8081/converter/';
-  private downloadURL: string = 'http://localhost:8081/download/';
+  private uRL: string = 'http://localhost:8081/converter/';
 
   constructor(private http: HttpClient) {}
 
   convertFile(converterConfig: ConverterConfig, sourceFormat: string, targetFormat: string) {
     var converterString = this.getURL(sourceFormat, targetFormat);
 
-    return this.http.post<ApiResponse>(this.convertURL + converterString, converterConfig);
+    console.log(converterString);
+
+    return this.http.post<ApiResponse>(this.uRL + converterString, converterConfig);
   }
 
   // TODO: tutorila umsetzen, wennd er Zugriff mit der DB funktioniert
-  downloadFile(config: ConverterPath){
-    // Siehe https://ramya-bala221190.medium.com/downloading-a-file-using-node-and-angular-b9eb32dd5ad5
-    return this.http.post(this.downloadURL, config);
+  getFile(config: ConverterPath){
+    return this.http.post(this.uRL + 'getFile', 
+      config, 
+      {responseType:'blob'}
+    );
   }
 
-  // TODO: muss im backend programmiert werden
   uploadFile(formData: any){
-    return this.http.post(this.convertURL + 'upload', formData, {
+    return this.http.post(this.uRL + 'upload', formData, {
       reportProgress: true,
       observe: 'events'
     });

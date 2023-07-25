@@ -34,7 +34,6 @@ export class DownloadModalComponent implements OnInit{
 
   downloadRepository(){
     this.config = {...this.downloadForm?.value};
-    // TODO: nochmal besser machen, dass depth schon zu begin als number gespeichert wird
     this.config.depth = parseInt(this.downloadForm.controls['depth'].value,10);
 
     this.downloadService.downloadHistoryData(this.config).subscribe({

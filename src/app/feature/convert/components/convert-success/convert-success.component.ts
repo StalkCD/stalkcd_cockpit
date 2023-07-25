@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ConverterPath } from 'src/app/shared/models/converterPath';
 import { ConverterService } from 'src/app/shared/services/converter.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-convert-success',
@@ -15,18 +16,25 @@ export class ConvertSuccessComponent {
     this.path= '';
   }
   
-  download():void{
+  getFile():void{
     var config: ConverterPath = {
       path: this.path
     };
 
-    this.converterService.downloadFile(config).subscribe({
-      next: () => {
-        this.toastrService.success("Success");
+    var fileName = this.getFileName(this.path);
+
+    this.converterService.getFile(config).subscribe({
+      next: (data) => {
+        let downloadURL = window.URL.createObjectURL(data);
+        saveAs(downloadURL, fileName);
       },
       error: (err) => {
         this.toastrService.error(err.error.message, "Error");
       }
     });
+  }
+
+  private getFileName(path: string): string {
+    return path.split('/')[3];
   }
 }

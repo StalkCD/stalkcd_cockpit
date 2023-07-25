@@ -52,9 +52,14 @@ export class ConvertComponent {
   convert(){
     var sourceFormat = this.frmStepTwo.value["sourceFormat"]
     var targetFormat = this.frmStepThree.value["targetFormat"]  
+    var newName = this.frmStepFinal.value["newName"];
 
+    if(newName == ""){
+      newName = this.frmStepOne.value["fileName"];
+    }
+    
     var path = this.frmStepOne.value["path"] + this.frmStepOne.value["fileName"] + "." + this.frmStepOne.value["format"];
-    var targetPath = this.getTargetPath(targetFormat, this.frmStepFinal.value["newName"]);
+    var targetPath = this.getTargetPath(targetFormat, newName);
     this.target = targetPath;
 
     var config: ConverterConfig = {
@@ -62,17 +67,16 @@ export class ConvertComponent {
       target: targetPath
     }
 
-    console.log(config);
-
-    // this.converterService.convertFile(config, sourceFormat, targetFormat).subscribe({
-    //   next: () => {
-    //     this.isDone = true;
-    //     this.toastrService.success("File converted successfully", "Success");
-    //   },
-    //   error: (err) => {
-    //     this.toastrService.error(err.error.message, "Error");
-    //   }
-    // });
+    this.converterService.convertFile(config, sourceFormat, targetFormat).subscribe({
+      next: () => {
+        this.isDone = true;
+        this.toastrService.success("File converted successfully", "Success");
+      },
+      error: (err) => {
+        this.isDone = false;
+        this.toastrService.error(err.error.message, "Error");
+      }
+    });
   }
 
   private getTargetPath(targetFormat: string, targetName: string): string{
