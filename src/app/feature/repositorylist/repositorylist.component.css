@@ -49,3 +49,9 @@ tr.workflow-element-row:not(.workflow-expanded-row):active {
 .bi-x-circle-fill{
     color: red;
 }
+
+.mat-mdc-fab.custom { 
+    background-color: #cddc39; 
+    color: white; 
+    border: 1px solid #cddc39; 
+}

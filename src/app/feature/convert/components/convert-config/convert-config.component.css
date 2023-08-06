@@ -27,12 +27,14 @@ input {
 }
 
 label {
-    color: white;
-    width: 183px;
-    height: 44px;
-    border-radius: 21.5px;
-    background-color: #db202f;
-    padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  width: 140px;
+  height: 38px;
+  border-radius: 21.5px;
+  background-color: #CDDC39;
+  padding: 8px 16px;
 }
 
 h3 {

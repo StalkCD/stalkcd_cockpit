@@ -53,7 +53,6 @@ export class ConvertConfigComponent{
           switch (event.type) {
             case HttpEventType.UploadProgress:
               this.uploadProgress = Math.round(100 * event.loaded  / event.total!);
-              console.log(this.uploadProgress);
               break;
             case HttpEventType.Response:
               setTimeout(() => {
