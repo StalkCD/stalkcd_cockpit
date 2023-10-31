@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DownloadService } from '../../services/download.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DownloadConfig } from '../../models/downloadConfig';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-download-modal',
@@ -46,5 +47,9 @@ export class DownloadModalComponent implements OnInit{
         this.wasSuccessful = false;
       }
     });
+  }
+
+  reloadPage(){
+    window.location.reload()
   }
 }

@@ -24,6 +24,7 @@ import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { UploadModalComponent } from './modals/upload-modal/upload-modal.component';
 import {MatSelectModule} from '@angular/material/select';
+import { StatusNamePipe } from './pipes/status-name.pipe';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {MatSelectModule} from '@angular/material/select';
     InformationModalComponent,
     DragAndDropDirective,
     ProgressBarComponent,
-    UploadModalComponent
+    UploadModalComponent,
+    StatusNamePipe
   ],
   imports: [
     CommonModule,
@@ -91,7 +93,8 @@ import {MatSelectModule} from '@angular/material/select';
     CountElementsPipe,
     DragAndDropDirective,
     ProgressBarComponent,
-    MatSelectModule
+    MatSelectModule,
+    StatusNamePipe
   ]
 })
 export class SharedModule { }

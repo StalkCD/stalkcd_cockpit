@@ -2,6 +2,7 @@ import { trigger, state, animate, style, transition } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { DownloadModalComponent } from 'src/app/shared/modals/download-modal/download-modal.component';
 import { CharacteristicsConfig } from 'src/app/shared/models/characteristicsConfig';
 import { Workflow } from 'src/app/shared/models/workflow';
@@ -22,15 +23,15 @@ import { WorkflowService } from 'src/app/shared/services/workflow.service';
 })
 export class RepositorylistComponent implements OnInit{
   datasource= new MatTableDataSource<Workflow>();
-  
-  columnsToDisplay = ['name', 'repoName', 'state', 'downloadDate'];
-
+  columnsToDisplay = ['name', 'repoName', 'state', 'downloadDate','downloaded',];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'analyze' ,'expand'];
   expandedElement: Workflow | null | undefined;
+  isChecked: boolean = false;
 
   constructor(private workflowService: WorkflowService, 
               private dialog: MatDialog,
-              private characteristicsService: CharacteristicsService) {} 
+              private characteristicsService: CharacteristicsService,
+              private router: Router) {} 
 
   ngOnInit(): void {
     this.getWorkflows();
@@ -49,6 +50,14 @@ export class RepositorylistComponent implements OnInit{
     this.datasource.filter = filterValue.trim().toLowerCase()
   }
 
+  onlyDownloaded(){
+    if(this.isChecked){
+      this.datasource.filter = "true";
+    }else{
+      this.datasource.filter = "";
+    }
+  }
+
   getCharacteristics(workflow: Workflow) {
     var characteristicsConfig: CharacteristicsConfig = {
       repoName: workflow.repoName,
@@ -56,7 +65,11 @@ export class RepositorylistComponent implements OnInit{
       loadFrom: 'db'
     }
 
-    this.characteristicsService.getCharacteristics(characteristicsConfig).subscribe();
+    this.characteristicsService.getCharacteristics(characteristicsConfig).subscribe(
+      (data) => {
+        this.router.navigate(['/home']);
+      }
+    );
   }
 
   openDownloadModal() {
@@ -69,6 +82,7 @@ export class RepositorylistComponent implements OnInit{
     workflows.forEach(element => {
       var workflow: Workflow = {
         repoName: element.repoName,
+        downloaded: element.downloaded,
         downloadDate: element.downloadDate,
         id: element.workflowDescription.id,
         name: element.workflowDescription.name,

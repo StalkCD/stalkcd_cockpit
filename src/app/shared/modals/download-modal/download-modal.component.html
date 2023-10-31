@@ -53,6 +53,6 @@
     <button mat-flat-button color="primary" type="submit" [disabled]="!downloadForm.valid" form="downloadForm">Download</button>
   </div>
   <div *ngIf="isDone">
-      <button mat-flat-button color="basic" type="button" [mat-dialog-close]="true">Close</button>
+      <button mat-flat-button color="basic" type="button" [mat-dialog-close]="true" (click)="reloadPage()">Close</button>
   </div>
 </mat-dialog-actions>
