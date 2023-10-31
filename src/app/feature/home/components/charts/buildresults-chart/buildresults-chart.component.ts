@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChartData, ChartType  } from 'chart.js';
+import { ChartData, ChartType } from 'chart.js';
 import { BuildResult } from 'src/app/shared/models/buildResult';
-
 
 @Component({
   selector: 'app-buildresults-chart',
@@ -10,13 +9,14 @@ import { BuildResult } from 'src/app/shared/models/buildResult';
 })
 export class BuildresultsChartComponent implements OnInit{
   @Input() buildResults!: BuildResult[];
+  private colorArray: string[] = [];
   
-  public chartLabels: string[] = [];
   public chartData: ChartData<'doughnut'> = {
     datasets: [
       { data: [] }
       ]
   };
+  public chartLabels: string[] = [];
   public chartType: ChartType = 'doughnut';
   public chartOptions = {
     responsive: true,
@@ -27,29 +27,48 @@ export class BuildresultsChartComponent implements OnInit{
     cutout: '70%',
   };
 
-  public chartLegend = true;
   public value = 0;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    this.buildColorArray();
     this.createChart();
   }
 
   createChart() {
-     this.chartLabels = this.buildResults.map(x => x.result);
-     this.chartData = {
+    this.chartLabels = this.buildResults.map(x => x.result);
+    this.chartData = {
+      labels: this.buildResults.map(x => x.result),
       datasets: [
         { 
           data: this.buildResults.map(x => x.count),
-          backgroundColor: [
-            '#ff0033', //failure
-            '#4BB543', //success
-            '#F9D423', //required
-          ]
+          backgroundColor: this.colorArray
         }
       ]
-     };
-     this.value = this.buildResults.reduce((sum, current) => sum + current.count, 0);
+    };
+    this.value = this.buildResults.reduce((sum, current) => sum + current.count, 0);
+  }
+
+  buildColorArray(){
+    this.buildResults.forEach(x => {
+      switch(x.result){
+        case 'success':
+          this.colorArray.push('#4BB543');
+          break;
+        case 'failure':
+          this.colorArray.push('#FC100D');
+          break;
+        case 'action_required':
+          this.colorArray.push('#FFCC00');
+          break;
+        case 'cancelled':
+          this.colorArray.push('#dcdcdc');
+          break;
+        default:
+          this.colorArray.push('#15868a');
+          break;
+      }
+    });
   }
 }

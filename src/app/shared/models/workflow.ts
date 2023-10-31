@@ -1,6 +1,5 @@
 export interface Workflow {
     repoName: string;
-    downloaded: boolean;
     downloadDate?: Date;
     id: number;
     name: string;

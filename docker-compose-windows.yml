@@ -1,24 +1,24 @@
 version: "2.19"
 services:
   cockpit:
-    image: stalkcd_cockpit
+    image: stalkcd:cockpit
     build:
       context: .
       dockerfile: Dockerfile
     ports:
     - "8080:80"
   extended:
-    image: stalkcd_extended
+    image: stalkcd:extended
     build:
       context: ../stalkcd_extended
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
     - "8081:8081"
   characteristics:
-    image: stalkcd_characteristics
+    image: stalkcd:characteristics
     build:
       context: ../stalkcd_characteristics
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - data:/files
     ports:
@@ -29,8 +29,7 @@ services:
       - mongodb:db
   mongodb:
     container_name: mongodb
-    image: arm64v8/mongo:latest
-    platform: linux/arm64/v8
+    image: mongodb/mongodb-community-server
     environment:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=pass

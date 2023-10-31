@@ -13,6 +13,6 @@ export interface Characteristics {
     totalAvgSuccessfulStepDuration?: any;
 
 
-    totalAvgStepDurationPerStep?: any; // TODO: wird nicht verwendet, da es ide sleben Daten sind wie avgStepDurationPerStepPerJob
+    totalAvgStepDurationPerStep?: any; // TODO: wird nicht verwendet, da es die selben Daten sind wie avgStepDurationPerStepPerJob
     avgStepDurationPerStepPerJob?: any;
 }

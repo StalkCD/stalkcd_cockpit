@@ -23,7 +23,8 @@ import { WorkflowService } from 'src/app/shared/services/workflow.service';
 export class RepositorylistComponent implements OnInit{
   datasource= new MatTableDataSource<Workflow>();
   
-  columnsToDisplay = ['name', 'repoName', 'state', 'downloaded', 'downloadDate'];
+  columnsToDisplay = ['name', 'repoName', 'state', 'downloadDate'];
+
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'analyze' ,'expand'];
   expandedElement: Workflow | null | undefined;
 
@@ -68,7 +69,6 @@ export class RepositorylistComponent implements OnInit{
     workflows.forEach(element => {
       var workflow: Workflow = {
         repoName: element.repoName,
-        downloaded: element.downloaded,
         downloadDate: element.downloadDate,
         id: element.workflowDescription.id,
         name: element.workflowDescription.name,

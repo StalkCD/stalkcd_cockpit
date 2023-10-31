@@ -17,8 +17,4 @@ export class HomeComponent{
       }
     });
   }
-  // ngAfterViewInit(): void {
-  //   this.elementRef.nativeElement.ownerDocument
-  //   .body.style.backgroundColor = '#f6f6f6';
-  // }
 }
