@@ -26,6 +26,7 @@ export class BuildresultsChartComponent implements OnInit{
     },
     cutout: '70%',
   };
+  cols = 4;
 
   public value = 0;
 
@@ -47,6 +48,9 @@ export class BuildresultsChartComponent implements OnInit{
         }
       ]
     };
+    if(this.buildResults.length > 4){
+      this.cols = this.buildResults.length;
+    }
     this.value = this.buildResults.reduce((sum, current) => sum + current.count, 0);
   }
 

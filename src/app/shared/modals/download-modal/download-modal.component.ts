@@ -3,6 +3,8 @@ import { DownloadService } from '../../services/download.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DownloadConfig } from '../../models/downloadConfig';
 import { Router } from '@angular/router';
+import { CharacteristicsConfig } from '../../models/characteristicsConfig';
+import { CharacteristicsService } from '../../services/characteristics.service';
 
 @Component({
   selector: 'app-download-modal',
@@ -14,8 +16,9 @@ export class DownloadModalComponent implements OnInit{
   config!: DownloadConfig;
   isDone: boolean = false;
   wasSuccessful!: boolean;
+  characteristicsConfig!: CharacteristicsConfig;
 
-  constructor(private formBuilder: FormBuilder, private downloadService: DownloadService) { }
+  constructor(private formBuilder: FormBuilder, private downloadService: DownloadService, private characteristicsService: CharacteristicsService, private router: Router) { }
 
   ngOnInit(){
     this.initializeForm();
@@ -49,7 +52,17 @@ export class DownloadModalComponent implements OnInit{
     });
   }
 
-  reloadPage(){
-    window.location.reload()
+  getCharacteristics() {
+    this.characteristicsConfig = {
+      repoName: this.config.repoName,
+      workflowName: this.config.workflowName,
+      loadFrom: 'db'
+    }
+
+    this.characteristicsService.getCharacteristics(this.characteristicsConfig).subscribe(
+      (data) => {
+        this.router.navigate(['/home']);
+      }
+    );
   }
 }

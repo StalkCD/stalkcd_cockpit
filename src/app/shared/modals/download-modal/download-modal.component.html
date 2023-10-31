@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Download Repository</h2>
+<h2 mat-dialog-title>Download Repository Workflows</h2>
 <mat-dialog-content class="mat-typography">
   <div *ngIf="!isDone">
       <form [formGroup]="downloadForm" id="downloadForm" (ngSubmit)="downloadForm.valid && downloadRepository()">
@@ -19,10 +19,8 @@
   
                 <label for="depth">Depth</label>
                 <select class="form-select" name="depth" formControlName="depth">
-                    <option value="1">Workflow Description File</option>
-                    <option value="2">+Runs</option>
-                    <option value="3">+Jobs</option>
-                    <option value="4">+Logs</option>
+                    <option value="3">Description File + Runs + Jobs</option>
+                    <option value="4">+ Logs</option>
                 </select>
 
                 <label for="pages">Pages</label>
@@ -53,6 +51,6 @@
     <button mat-flat-button color="primary" type="submit" [disabled]="!downloadForm.valid" form="downloadForm">Download</button>
   </div>
   <div *ngIf="isDone">
-      <button mat-flat-button color="basic" type="button" [mat-dialog-close]="true" (click)="reloadPage()">Close</button>
+      <button mat-flat-button color="basic" type="button" [mat-dialog-close]="true" (click)="getCharacteristics()">Close</button>
   </div>
 </mat-dialog-actions>

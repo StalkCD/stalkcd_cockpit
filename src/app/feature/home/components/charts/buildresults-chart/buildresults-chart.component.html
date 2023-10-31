@@ -6,7 +6,7 @@
       [type]="chartType">
   </canvas>    
 </div>
-<mat-grid-list cols="4">
+<mat-grid-list cols="{{cols}}">
   <mat-grid-tile *ngFor="let card of buildResults" [colspan]="1" [rowspan]="1">
     <div>
       <h3 class="doughnut-label">{{card.result | statusName}}</h3>
