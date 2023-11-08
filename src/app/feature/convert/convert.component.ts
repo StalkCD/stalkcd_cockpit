@@ -86,13 +86,13 @@ export class ConvertComponent {
   private getTargetPath(targetFormat: string, targetName: string): string{
     var path = "";
     if(targetFormat == "stalkcd"){
-      path = "./res/_StalkCDYamls/"+targetName +".yml";
+      path = "public/res/_StalkCDYamls/"+targetName +".yml";
     }else if(targetFormat == "jenkins"){
-      path = "./res/_JenkinsFiles/"+targetName +".Jenkinsfile";
+      path = "public/res/_JenkinsFiles/"+targetName +".Jenkinsfile";
     }else if(targetFormat == "githubactions"){
-      path = "./res/_GitHubActionsFiles/"+targetName +".yml";
+      path = "public/res/_GitHubActionsFiles/"+targetName +".yml";
     }else if(targetFormat == "bpmn"){
-      path = "./res/_BPMNFiles/"+targetName +".bpmn";
+      path = "public/res/_BPMNFiles/"+targetName +".bpmn";
     }
 
     return path;
