@@ -29,8 +29,7 @@ services:
       - mongodb:db
   mongodb:
     container_name: mongodb
-    image: arm64v8/mongo:latest
-    platform: linux/arm64/v8
+    image: mongodb/mongodb-community-server
     environment:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=pass
