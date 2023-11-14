@@ -76,7 +76,7 @@ export class AvgstepdurationperstepperjobChartComponent implements OnInit{
       datasets: [
         {
           data: data.map(x => this.toSeconds(x.avgDur)),
-          label: 'Arrival Rate',
+          label: 'Step Duration',
           backgroundColor: 'rgba(179,229,252,0.3)',
           borderColor: '#CDDC39',
           pointBackgroundColor: '#0288d1',

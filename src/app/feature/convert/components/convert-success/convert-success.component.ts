@@ -25,7 +25,7 @@ export class ConvertSuccessComponent {
 
     var fileName = this.getFileName(this.path);
 
-    this.converterService.getFile(config).subscribe({
+    this.converterService.postFile(config).subscribe({
       next: (data) => {
         let downloadURL = window.URL.createObjectURL(data);
         saveAs(downloadURL, fileName);

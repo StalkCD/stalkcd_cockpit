@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WorkflowService {
-  private uRL = 'http://localhost:8082/workflows/';
+  private uRL = 'http://localhost:8082/workflows';
 
   constructor(private httpClient: HttpClient) { }
 
   getWorkflows(){
-    return this.httpClient.post(this.uRL, null);
+    return this.httpClient.get(this.uRL);
   }
 }

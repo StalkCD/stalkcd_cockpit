@@ -17,7 +17,8 @@ export class ConverterService {
     return this.http.post<ApiResponse>(this.uRL + converterString, converterConfig);
   }
 
-  getFile(config: ConverterPath){
+  
+  postFile(config: ConverterPath){
     return this.http.post(this.uRL + 'getFile', 
       config, 
       {responseType:'blob'}
