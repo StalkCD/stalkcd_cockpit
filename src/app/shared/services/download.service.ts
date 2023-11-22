@@ -7,7 +7,7 @@ import { ApiResponse } from '../models/apiResponse';
   providedIn: 'root'
 })
 export class DownloadService {
-  private uRL = 'http://localhost:8082/download/';
+  private uRL = 'http://0.0.0.0:8082/download/';
 
   constructor(private http: HttpClient) { }
 
