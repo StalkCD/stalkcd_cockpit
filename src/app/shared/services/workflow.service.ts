@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WorkflowService {
-  private uRL = 'http://0.0.0.0:8082/workflows';
+  private uRL = 'http://characteristics:8082/workflows';
 
   constructor(private httpClient: HttpClient) { }
 
