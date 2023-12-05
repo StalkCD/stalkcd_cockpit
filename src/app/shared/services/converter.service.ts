@@ -8,7 +8,8 @@ import { ConverterPath } from '../models/converterPath';
   providedIn: 'root'
 })
 export class ConverterService {
-  private uRL: string = 'http://127.0.0.1:8081/converter/';
+  // URL for productive environment
+  private uRL: string = 'http://18.193.68.144:8081/converter/';
 
   constructor(private http: HttpClient) {}
 

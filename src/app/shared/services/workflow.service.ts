@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WorkflowService {
-  private uRL = 'http://127.0.0.1:8082/workflows';
+  // URL for productive environment
+  private uRL = 'http://18.193.68.144:8082/workflows';
 
   constructor(private httpClient: HttpClient) { }
 

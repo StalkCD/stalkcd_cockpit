@@ -8,7 +8,9 @@ import { BehaviorSubject, map } from 'rxjs';
   providedIn: 'root'
 })
 export class CharacteristicsService {
-  private uRL = 'http://127.0.0.1:8082/characteristics/';
+  // URL for productive environment
+  private uRL = 'http://18.193.68.144:8082/characteristics/';
+  
   private currentCharacteristicsSource = new BehaviorSubject<Characteristics | null>(null);
   currentCharacteristics$ = this.currentCharacteristicsSource.asObservable();
   
