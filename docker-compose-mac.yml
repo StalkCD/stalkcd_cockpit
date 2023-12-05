@@ -31,6 +31,7 @@ services:
     restart: always
     environment:
       - DATABASE_HOST=db
+      - DATABASE_KEY = $${{ secrets.DB_KEY }}
     links:
       - mongodb:db
   mongodb:
