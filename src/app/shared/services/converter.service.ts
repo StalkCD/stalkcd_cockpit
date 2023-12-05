@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { ConverterConfig } from '../models/converterConfig';
 import { ApiResponse } from '../models/apiResponse';
 import { ConverterPath } from '../models/converterPath';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConverterService {
-  // URL for productive environment
-  private uRL: string = 'http://18.193.68.144:8081/converter/';
+  private uRL = environment.apiUrl + ':8081/converter/';
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +18,6 @@ export class ConverterService {
     return this.http.post<ApiResponse>(this.uRL + converterString, converterConfig);
   }
 
-  
   postFile(config: ConverterPath){
     return this.http.post(this.uRL + 'getFile', 
       config, 

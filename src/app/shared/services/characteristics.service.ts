@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { Characteristics } from 'src/app/shared/models/characteristics';
 import { CharacteristicsConfig } from '../models/characteristicsConfig';
 import { BehaviorSubject, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacteristicsService {
-  // URL for productive environment
-  private uRL = 'http://18.193.68.144:8082/characteristics/';
-  
+  private uRL = environment.apiUrl + ':8082/characteristics/';
   private currentCharacteristicsSource = new BehaviorSubject<Characteristics | null>(null);
   currentCharacteristics$ = this.currentCharacteristicsSource.asObservable();
   
