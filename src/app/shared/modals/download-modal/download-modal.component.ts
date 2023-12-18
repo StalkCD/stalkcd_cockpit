@@ -28,7 +28,7 @@ export class DownloadModalComponent implements OnInit{
     this.downloadForm = this.formBuilder.group({
       repoName: ['', Validators.required],
       repoOwner: ['', Validators.required],
-      workflowName: ['', Validators.required],
+      workflowName: [''],
       gitHubToken: ['', Validators.required],
       saveTo: ['db', Validators.required],
       depth: ['', Validators.required],
@@ -52,17 +52,9 @@ export class DownloadModalComponent implements OnInit{
     });
   }
 
-  getCharacteristics() {
-    this.characteristicsConfig = {
-      repoName: this.config.repoName,
-      workflowName: this.config.workflowName,
-      loadFrom: 'db'
-    }
-
-    this.characteristicsService.getCharacteristics(this.characteristicsConfig).subscribe(
-      (data) => {
-        this.router.navigate(['/home']);
-      }
-    );
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([uri]);
+    });
   }
 }

@@ -30,7 +30,7 @@ services:
       - "8082:8082"
     environment:
       - DATABASE_HOST=db
-      - DATABASE_KEY = $${{ secrets.DB_KEY }}
+      - DB_KEY= "${DB_KEY}"
     links:
       - mongodb:db
     restart: always
