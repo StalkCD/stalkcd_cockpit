@@ -31,7 +31,7 @@ services:
     restart: always
     environment:
       - DATABASE_HOST=db
-      - DB_KEY= "${DB_KEY}"
+      - DBKEY= "${DBKEY}"
     links:
       - mongodb:db
   mongodb:
