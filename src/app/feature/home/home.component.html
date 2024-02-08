@@ -1,6 +1,7 @@
 <ngx-spinner size="medium" [fullScreen]="true"><p class="loading">Loading...</p></ngx-spinner>
 
-<div class="grid-container" *ngIf="!!characteristics">
+<div class="grid-container" *ngIf="!!characteristics && !!config">
+  <h1 style="text-align: center; font-size: 2.5em; font-weight: lighter; text-decoration: underline; text-decoration-thickness: 1px;">{{config.workflowName}} <small>({{config.repoName}})</small></h1>
   <div class="kpi-wrap">
     <mat-grid-list cols="4" rowHeight="120px">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -70,7 +71,7 @@
     </mat-grid-list>
   </div> 
 </div>
-<div class="empty-state" *ngIf="!characteristics">
+<div class="empty-state" *ngIf="!characteristics && !config">
   <img class="empty-img" src="../assets/img/empty-box.svg" />
   <h1>It looks very empty here.</h1>
   <h2>Please choose a repository workflow to display its characteristics.</h2>

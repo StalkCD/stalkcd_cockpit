@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacteristicsService } from './shared/services/characteristics.service';
 import { Characteristics } from './shared/models/characteristics';
+import { CharacteristicsConfig } from './shared/models/characteristicsConfig';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +19,12 @@ export class AppComponent implements OnInit {
 
   setCurrentCharacteristics(){
     const charString = localStorage.getItem('characteristics');
-    if(!charString) {
+    const charConfigString = localStorage.getItem('characteristicsConfig');
+    if(!charString || !charConfigString) {
       return;
     }
     const characteristics: Characteristics = JSON.parse(charString);
-    this.characteristicsService.setCurrentCharacteristics(characteristics);
+    const characteristicsConfig: CharacteristicsConfig = JSON.parse(charConfigString);
+    this.characteristicsService.setCurrentCharacteristics(characteristics, characteristicsConfig);
   }
 }
