@@ -29,7 +29,7 @@
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <app-kpi-card class="kpi-card"
-                [title]="'Avg. Successfull Step Duration'"
+                [title]="'Avg. Successful Step Duration'"
                 [duration]="characteristics.totalAvgSuccessfulStepDuration"
         ></app-kpi-card>
       </mat-grid-tile>
@@ -46,7 +46,7 @@
       <mat-grid-tile [colspan]="3" [rowspan]="1">
         <mat-card class="dashboard-card">
           <mat-card-header class="dashboard-card__header">
-            <p class="header">Arrival Rate</p>
+            <p class="header">Arrival Rate <small>(executions per day)</small></p>
           </mat-card-header>
           <mat-card-content>
             <div>
