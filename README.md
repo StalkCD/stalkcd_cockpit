@@ -20,11 +20,14 @@ The [characteristics service](https://github.com/StalkCD/stalkcd_characteristics
 
 ## Usage
 It is assumed that each StalkCD service is stored in a higher-level directory (e.g. source).
+This simplifies the use of the Docker compose file.
+It should like:
+
 source
 - stalkcd_cockpit
 - stalkcd_extended
 - stalkcd_characteristics
-This simplifies the use of the Docker compose file.
+
 
 Use the docker-compose.yml if you have your own atlas mongodb.
 - The URL for accessing the database must be adapted in the [characteristics service](https://github.com/StalkCD/stalkcd_characteristics).
@@ -41,4 +44,5 @@ After all services are succefull installed run
 docker-compose up
 ```
 to generate the appropriate containers.
+
 Then go to "http://localhost:8080" to visit the Cockpit.
