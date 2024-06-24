@@ -21,7 +21,7 @@ The [characteristics service](https://github.com/StalkCD/stalkcd_characteristics
 ## Usage
 It is assumed that each StalkCD service is stored in a higher-level directory (e.g. source).
 This simplifies the use of the Docker compose file.
-It should like:
+It should look like:
 
 source
 - stalkcd_cockpit
