@@ -1,7 +1,7 @@
 # StalkCD-Cockpit
 
 ####
-This project provides a GUI for the StalkCD framework, inlcuding a dashboard for visualizing CI/CD pipeline metrics and cross-platform build file conversion.
+This project provides the GUI for the StalkCD framework, inlcuding a dashboard for visualizing CI/CD pipeline metrics and cross-platform build file conversion.
 To be able to use the available functions, the corresponding projects must also be installed. 
 The [characteristics service](https://github.com/StalkCD/stalkcd_characteristics) is required to display the metrics and the [conversion service](https://github.com/StalkCD/stalkcd_extended) is required for the conversion.
 
@@ -19,7 +19,7 @@ The [characteristics service](https://github.com/StalkCD/stalkcd_characteristics
 3. Clone and install the repositories of the required services.
 
 ## Usage
-It is assumed that each StalkCD service is stored in a higher-level directory (e.g. source).
+It is assumed that the StalkCD services are stored in one directory (e.g. source).
 This simplifies the use of the Docker compose file.
 It should look like:
 
@@ -31,7 +31,7 @@ source
 
 Use the docker-compose.yml if you have your own atlas mongodb.
 - The URL for accessing the database must be adapted in the [characteristics service](https://github.com/StalkCD/stalkcd_characteristics).
-- The DBKEY for the connection has to be set as environent varibale via 
+- The DBKEY for the connection has to be set as environment variable via 
 ```
 export DBKEY=PutYourKeyHere
 ```
