@@ -11,6 +11,7 @@ services:
       - extended
       - characteristics
     restart: always
+
   extended:
     image: stalkcd/extended
     build:
@@ -19,6 +20,9 @@ services:
     ports:
       - "8081:8081"
     restart: always
+    volumes:
+      - archive_volume:/Stored data  # Ensure access to GHAhistorydata
+
   characteristics:
     image: stalkcd/characteristics
     build:
@@ -30,3 +34,18 @@ services:
       - DATABASE_HOST=db
       - DBKEY= "${DBKEY}"
     restart: always
+    volumes:
+      - archive_volume:/Stored data  # Save data with date-based renaming
+
+  archive:
+    image: archive_image
+    build: .
+    volumes:
+      - archive_volume:/Stored data  # Ensure archive has access
+    ports:
+      - "8083:80"
+
+# Define named volume
+volumes:
+  archive_volume:
+    driver: local  # This uses Docker's default local volume driver

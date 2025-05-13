@@ -6,21 +6,40 @@ import { Router } from '@angular/router';
 import { CharacteristicsConfig } from '../../models/characteristicsConfig';
 import { CharacteristicsService } from '../../services/characteristics.service';
 
+// ✅ Import Material Modules
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+
 @Component({
   selector: 'app-download-modal',
+  standalone: true,  // ✅ Ensure this is a standalone component
   templateUrl: './download-modal.component.html',
-  styleUrls: ['./download-modal.component.css']
+  styleUrls: ['./download-modal.component.css'],
+  imports: [
+    MatDialogModule, MatButtonModule, MatInputModule, MatSelectModule, MatFormFieldModule,
+    ReactiveFormsModule, FormsModule, NgIf
+  ]  // ✅ Add necessary Material and Angular modules
 })
-export class DownloadModalComponent implements OnInit{
+export class DownloadModalComponent implements OnInit {
   downloadForm: FormGroup = new FormGroup({});
   config!: DownloadConfig;
   isDone: boolean = false;
   wasSuccessful!: boolean;
   characteristicsConfig!: CharacteristicsConfig;
 
-  constructor(private formBuilder: FormBuilder, private downloadService: DownloadService, private characteristicsService: CharacteristicsService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private downloadService: DownloadService,
+    private characteristicsService: CharacteristicsService,
+    private router: Router
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.initializeForm();
   }
 
@@ -36,16 +55,16 @@ export class DownloadModalComponent implements OnInit{
     });
   }
 
-  downloadRepository(){
-    this.config = {...this.downloadForm?.value};
-    this.config.depth = parseInt(this.downloadForm.controls['depth'].value,10);
+  downloadRepository() {
+    this.config = { ...this.downloadForm?.value };
+    this.config.depth = parseInt(this.downloadForm.controls['depth'].value, 10);
 
     this.downloadService.downloadHistoryData(this.config).subscribe({
       next: () => {
         this.isDone = true;
         this.wasSuccessful = true;
       },
-      error: (err) => {
+      error: () => {
         this.isDone = true;
         this.wasSuccessful = false;
       }
@@ -53,7 +72,7 @@ export class DownloadModalComponent implements OnInit{
   }
 
   redirectTo(uri: string) {
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([uri]);
     });
   }

@@ -3,11 +3,25 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';  // Import MatDialogModule for dialogs
+import { MatTableModule } from '@angular/material/table';    // Import MatTableModule for table features
+import { RouterModule } from '@angular/router';              // Import RouterModule for routing
+import { CommonModule } from '@angular/common';              // Import CommonModule for ngIf, ngFor, etc.
+
 import { DownloadModalComponent } from 'src/app/shared/modals/download-modal/download-modal.component';
 import { CharacteristicsConfig } from 'src/app/shared/models/characteristicsConfig';
 import { Workflow } from 'src/app/shared/models/workflow';
 import { CharacteristicsService } from 'src/app/shared/services/characteristics.service';
 import { WorkflowService } from 'src/app/shared/services/workflow.service';
+
+import { NgxSpinnerModule } from "ngx-spinner";
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-repositorylist',
@@ -15,23 +29,38 @@ import { WorkflowService } from 'src/app/shared/services/workflow.service';
   styleUrls: ['./repositorylist.component.css'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
-  ]
+  ],
+  standalone: true,  // Enable standalone component
+  imports: [
+    CommonModule, 
+    MatDialogModule, 
+    MatTableModule, 
+    RouterModule,
+    MatIconModule,        // <-- Import für <mat-icon>
+    MatCheckboxModule,    // <-- Import für <mat-checkbox>
+    MatInputModule,       // <-- Import für <input matInput>
+    MatFormFieldModule,   // <-- Import für <mat-form-field>
+    NgxSpinnerModule,      // <-- Import für <ngx-spinner>
+    FormsModule
+  ]  // Import necessary modules
 })
-export class RepositorylistComponent implements OnInit{
-  datasource= new MatTableDataSource<Workflow>();
-  columnsToDisplay = ['name', 'repoName', 'state', 'downloadDate','downloaded',];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'analyze' ,'expand'];
+export class RepositorylistComponent implements OnInit {
+  datasource = new MatTableDataSource<Workflow>();
+  columnsToDisplay = ['name', 'repoName', 'state', 'downloadDate', 'downloaded'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'analyze', 'expand'];
   expandedElement: Workflow | null | undefined;
   isChecked: boolean = false;
 
-  constructor(private workflowService: WorkflowService, 
-              private dialog: MatDialog,
-              private characteristicsService: CharacteristicsService,
-              private router: Router) {} 
+  constructor(
+    private workflowService: WorkflowService,
+    private dialog: MatDialog,
+    private characteristicsService: CharacteristicsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getWorkflows();

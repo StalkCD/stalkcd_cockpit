@@ -28,17 +28,6 @@ import { StatusNamePipe } from './pipes/status-name.pipe';
 
 
 @NgModule({
-  declarations: [
-    DownloadModalComponent,
-    ToSecondsPipe,
-    ToMinutesPipe,
-    CountElementsPipe,
-    InformationModalComponent,
-    DragAndDropDirective,
-    ProgressBarComponent,
-    UploadModalComponent,
-    StatusNamePipe
-  ],
   imports: [
     CommonModule,
     NgxSpinnerModule.forRoot(
@@ -60,7 +49,16 @@ import { StatusNamePipe } from './pipes/status-name.pipe';
     MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    DownloadModalComponent,
+    ToSecondsPipe,
+    ToMinutesPipe,
+    CountElementsPipe,
+    InformationModalComponent,
+    DragAndDropDirective,
+    ProgressBarComponent,
+    UploadModalComponent,
+    StatusNamePipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -72,29 +70,5 @@ import { StatusNamePipe } from './pipes/status-name.pipe';
       }
     }
   ],
-  exports: [  
-    NgxSpinnerModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatGridListModule,
-    MatCardModule,
-    MatIconModule,
-    MatMenuModule,
-    MatProgressBarModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatTableModule,
-    ToSecondsPipe,
-    ToMinutesPipe,
-    CountElementsPipe,
-    DragAndDropDirective,
-    ProgressBarComponent,
-    MatSelectModule,
-    StatusNamePipe
-  ]
 })
 export class SharedModule { }

@@ -1,26 +1,58 @@
 import { Component, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { SourceFormatComponent } from './components/source-format/source-format.component';
 import { TargetFormatComponent } from './components/target-format/target-format.component';
-import { ConverterService } from 'src/app/shared/services/converter.service';
 import { ConvertConfigComponent } from './components/convert-config/convert-config.component';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConvertSuccessComponent } from './components/convert-success/convert-success.component';
+import { ConverterService } from 'src/app/shared/services/converter.service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ConverterConfig } from 'src/app/shared/models/converterConfig';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MatGridListModule } from '@angular/material/grid-list';  // Import MatGridListModule
+import { MatCardModule } from '@angular/material/card';  // Import MatCardModule
+import { MatStepperModule } from '@angular/material/stepper';  // Import MatStepperModule
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-convert',
+  standalone: true,
   templateUrl: './convert.component.html',
-  styleUrls: ['./convert.component.css']
+  styleUrls: ['./convert.component.css'],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    SharedModule,
+    SourceFormatComponent,
+    TargetFormatComponent,
+    ConvertConfigComponent,
+    ConvertSuccessComponent,
+    MatGridListModule,
+    MatCardModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule 
+  ]
 })
 export class ConvertComponent {
-  @ViewChild(SourceFormatComponent) sourceFormatComponent: SourceFormatComponent;
-  @ViewChild(TargetFormatComponent) targetFormatComponent: TargetFormatComponent;
-  @ViewChild(ConvertConfigComponent) convertConfigComponent: ConvertConfigComponent;
-  source: string;
-  target: string;
-  isDone: boolean;
+  @ViewChild(SourceFormatComponent) sourceFormatComponent!: SourceFormatComponent;
+  @ViewChild(TargetFormatComponent) targetFormatComponent!: TargetFormatComponent;
+  @ViewChild(ConvertConfigComponent) convertConfigComponent!: ConvertConfigComponent;
+  
+  source: string = '';
+  target: string = '';
+  isDone: boolean = false;
   frmStepFinal: FormGroup;
-  success: boolean;
+  success: boolean = false;
+
+  constructor(private fb: FormBuilder, private converterService: ConverterService, private toastrService: ToastrService) {
+    this.frmStepFinal = this.fb.group({
+      newName: ['', Validators.required]
+    });
+  }
 
   get frmStepOne() {
     return this.convertConfigComponent.frmStepOne;
@@ -34,40 +66,27 @@ export class ConvertComponent {
     return this.targetFormatComponent.frmStepThree;
   }
 
-  constructor(private fb: FormBuilder, private converterService: ConverterService, private toastrService: ToastrService) {
-    this.source = '';
-    this.target = '';
-    this.sourceFormatComponent = new SourceFormatComponent(new FormBuilder());
-    this.targetFormatComponent = new TargetFormatComponent(new FormBuilder());
-    this.convertConfigComponent = new ConvertConfigComponent(new FormBuilder(), this.converterService);
-    this.isDone = false;
-    this.frmStepFinal = this.fb.group({
-      newName: ['', Validators.required]
-    });
-    this.success = false;
-  }
-
   getSource(source: string){
     this.source = source;
   }
 
-  convert(){
-    var sourceFormat = this.frmStepTwo.value["sourceFormat"]
-    var targetFormat = this.frmStepThree.value["targetFormat"]  
-    var newName = this.frmStepFinal.value["newName"];
+  convert() {
+    const sourceFormat = this.frmStepTwo.value["sourceFormat"];
+    const targetFormat = this.frmStepThree.value["targetFormat"];
+    let newName = this.frmStepFinal.value["newName"];
 
-    if(newName == ""){
+    if (newName === "") {
       newName = this.frmStepOne.value["fileName"];
     }
-    
-    var path = this.frmStepOne.value["path"] + this.frmStepOne.value["fileName"] + "." + this.frmStepOne.value["format"];
-    var targetPath = this.getTargetPath(targetFormat, newName);
+
+    const path = this.frmStepOne.value["path"] + this.frmStepOne.value["fileName"] + "." + this.frmStepOne.value["format"];
+    const targetPath = this.getTargetPath(targetFormat, newName);
     this.target = targetPath;
 
-    var config: ConverterConfig = {
+    const config: ConverterConfig = {
       source: path,
       target: targetPath
-    }
+    };
 
     this.converterService.convertFile(config, sourceFormat, targetFormat).subscribe({
       next: () => {
@@ -83,18 +102,14 @@ export class ConvertComponent {
     });
   }
 
-  private getTargetPath(targetFormat: string, targetName: string): string{
-    var path = "";
-    if(targetFormat == "stalkcd"){
-      path = "public/res/_StalkCDYamls/"+targetName +".yml";
-    }else if(targetFormat == "jenkins"){
-      path = "public/res/_JenkinsFiles/"+targetName +".Jenkinsfile";
-    }else if(targetFormat == "githubactions"){
-      path = "public/res/_GitHubActionsFiles/"+targetName +".yml";
-    }else if(targetFormat == "bpmn"){
-      path = "public/res/_BPMNFiles/"+targetName +".bpmn";
-    }
-
-    return path;
+  private getTargetPath(targetFormat: string, targetName: string): string {
+    const paths: Record<string, string> = {
+      "stalkcd": "public/res/_StalkCDYamls/",
+      "jenkins": "public/res/_JenkinsFiles/",
+      "githubactions": "public/res/_GitHubActionsFiles/",
+      "bpmn": "public/res/_BPMNFiles/"
+    };
+    
+    return `${paths[targetFormat] || "public/res/unknown/"}` + targetName + "." + (targetFormat === "jenkins" ? "Jenkinsfile" : "yml");
   }
 }
