@@ -1,11 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
 import { ArrivalRate } from 'src/app/shared/models/arrivalRate';
+import { NgChartsModule } from 'ng2-charts';
 
 @Component({
   selector: 'app-arrivalrate-chart',
+  standalone: true,
   templateUrl: './arrivalrate-chart.component.html',
-  styleUrls: ['./arrivalrate-chart.component.css']
+  styleUrls: ['./arrivalrate-chart.component.css'],
+  imports: [NgChartsModule] // <-- Add this import
 })
 export class ArrivalrateChartComponent implements OnInit{
   @Input() arrivalRate!: ArrivalRate[];

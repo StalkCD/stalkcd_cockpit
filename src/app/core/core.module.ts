@@ -1,7 +1,7 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
-import { ErrorModule } from './components/error/error.module';
+import { ErrorComponent } from './components/error/error.component';
 import { RouterModule } from '@angular/router';
 import { GlobalErrorHandler } from './handler/global-error-handler';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -12,7 +12,6 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +20,8 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     }),
     BrowserAnimationsModule,
     RouterModule,
-    ErrorModule
+    ErrorComponent,
+    HeaderComponent
   ],
   exports: [
     HeaderComponent,

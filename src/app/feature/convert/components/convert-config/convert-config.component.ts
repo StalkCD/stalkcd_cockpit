@@ -3,15 +3,21 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ConverterService } from 'src/app/shared/services/converter.service';
+import { MatCardModule } from '@angular/material/card';  
+import { MatProgressBarModule } from '@angular/material/progress-bar'; 
+import { MatButtonModule } from '@angular/material/button'; 
+import { ReactiveFormsModule } from '@angular/forms';  // <-- Import this
 
 @Component({
   selector: 'app-convert-config',
+  standalone: true,
   templateUrl: './convert-config.component.html',
-  styleUrls: ['./convert-config.component.css']
+  styleUrls: ['./convert-config.component.css'],
+  imports: [MatCardModule, MatProgressBarModule, MatButtonModule, ReactiveFormsModule]  // <-- Add ReactiveFormsModule here
 })
-export class ConvertConfigComponent{
-  @ViewChild('fileDropRef', {static: false}) fileDropEl!: ElementRef;
-  files: any[];
+export class ConvertConfigComponent {
+  @ViewChild('fileDropRef', { static: false }) fileDropEl!: ElementRef;
+  files: any[] = [];
   frmStepOne: FormGroup;
   isDone: boolean = false;
 
@@ -19,7 +25,6 @@ export class ConvertConfigComponent{
   uploadSub!: Subscription;
 
   constructor(private fb: FormBuilder, private converterService: ConverterService) {
-    this.files = [];
     this.frmStepOne = this.fb.group({
       fileName: ['', Validators.required],
       path: ['', Validators.required],
@@ -36,23 +41,22 @@ export class ConvertConfigComponent{
     this.uploadFile(files);
   }
 
-  uploadFile(files: Array<any>){
-    const file:File = files[0];
+  uploadFile(files: Array<any>) {
+    const file: File = files[0];
     this.files.push(file);
 
-    if(file){
-      const formData:FormData = new FormData();
-
+    if (file) {
+      const formData: FormData = new FormData();
       formData.append('fileName', file.name);
       formData.append('file', file);
 
       const upload$ = this.converterService.uploadFile(formData);
 
       this.uploadSub = upload$.subscribe(
-        (event:HttpEvent<any>) => {
+        (event: HttpEvent<any>) => {
           switch (event.type) {
             case HttpEventType.UploadProgress:
-              this.uploadProgress = Math.round(100 * event.loaded  / event.total!);
+              this.uploadProgress = Math.round(100 * event.loaded / event.total!);
               break;
             case HttpEventType.Response:
               setTimeout(() => {

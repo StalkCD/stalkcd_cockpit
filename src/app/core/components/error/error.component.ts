@@ -1,20 +1,24 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';  // Import CommonModule for ngIf, ngFor, etc.
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule for HTTP operations
 
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',
-  styleUrls: ['./error.component.css']
+  styleUrls: ['./error.component.css'],
+  standalone: true,  // Enable standalone component
+  imports: [CommonModule, HttpClientModule]  // Import necessary modules
 })
 export class ErrorComponent {
   
   constructor(private http: HttpClient) {}
 
-  throwError(){
+  throwError() {
     throw new Error("My pretty error");
   }
 
-  throwHttpError(){
+  throwHttpError() {
     this.http.get('URL').subscribe();
   }
 }
